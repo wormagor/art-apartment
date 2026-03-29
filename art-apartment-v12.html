@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Art Apartment | Astrid Garden Prague 7</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Outfit:wght@300;400;500&display=swap');
@@ -214,11 +217,110 @@
             max-width: 900px;
             margin: 2.5rem auto 0;
         }
-        .detail-item { text-align: center; padding: 1.5rem; background: var(--ivory); transition: transform 0.3s; }
-        .detail-item:hover { transform: translateY(-5px); }
-        .detail-val { font-family: var(--serif); font-size: 2rem; color: var(--bronze); margin-bottom: 0.3rem; }
-        .detail-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
-        
+        .detail-item {
+            text-align: center; padding: 2rem 1.5rem; background: var(--ivory);
+            transition: transform 0.3s; display: flex; flex-direction: column;
+            align-items: center; gap: 0.75rem;
+        }
+        .detail-item:hover { transform: translateY(-4px); }
+        .detail-icon {
+            width: 44px; height: 44px;
+            border: 1.5px solid var(--bronze); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--serif); font-size: 1.1rem;
+            color: var(--bronze); font-weight: 500;
+        }
+        .detail-val { font-family: var(--serif); font-size: 2rem; color: var(--bronze); line-height: 1; }
+        .detail-label { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bronze); }
+
+        .parking-callout {
+            max-width: 900px;
+            margin: 1rem auto 0;
+            background: var(--ivory);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.75rem;
+            transition: transform 0.3s;
+        }
+        .parking-callout:hover { transform: translateY(-4px); }
+        .parking-icon {
+            width: 44px; height: 44px;
+            border: 1.5px solid var(--bronze);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            color: var(--bronze);
+            font-weight: 500;
+        }
+        .parking-body { }
+        .parking-title {
+            font-family: var(--serif);
+            font-size: 1rem;
+            color: var(--obsidian);
+            margin-bottom: 0.15rem;
+        }
+        .parking-sub {
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--bronze);
+            margin-bottom: 0.6rem;
+        }
+        .parking-desc {
+            font-size: 0.8rem;
+            color: var(--charcoal);
+            line-height: 1.6;
+            opacity: 0.85;
+        }
+
+        .equip-section {
+            max-width: 900px;
+            margin: 1rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+        .equip-section-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--bronze);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .equip-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        .equip-item {
+            background: var(--ivory);
+            padding: 1.25rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            transition: transform 0.3s;
+            min-height: 90px;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+        .equip-item:hover { transform: translateY(-4px); }
+        .equip-item-brand {
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--bronze);
+        }
+        .equip-item-name {
+            font-size: 0.78rem;
+            color: var(--charcoal);
+            line-height: 1.4;
+        }
+
         .gallery { background: var(--cream); }
         .gallery-grid {
             display: grid;
@@ -264,26 +366,67 @@
         
         .map-section { background: var(--sand); }
         .map-intro { max-width: 700px; margin: 0.5rem auto 2rem; text-align: center; font-size: 0.9rem; line-height: 1.7; }
-        .map-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 350px; gap: 1.5rem; }
-        .map-frame { background: var(--cream); height: 650px; border-radius: 4px; position: relative; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .map-frame iframe { width: 100%; height: 100%; border: 0; filter: sepia(15%) saturate(90%) hue-rotate(10deg); }
-        
-        .poi-sidebar { display: flex; flex-direction: column; gap: 0.35rem; max-height: 650px; overflow-y: auto; }
-        .poi-sidebar::-webkit-scrollbar { width: 4px; }
-        .poi-sidebar::-webkit-scrollbar-thumb { background: var(--bronze); border-radius: 2px; }
-        .poi-cat { background: var(--ivory); border-radius: 3px; overflow: hidden; }
-        .poi-header { padding: 0.6rem 0.9rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; font-weight: 500; color: var(--obsidian); transition: background 0.3s; }
-        .poi-header:hover { background: var(--cream); }
-        .poi-toggle { font-size: 0.5rem; color: var(--bronze); transition: transform 0.3s; }
-        .poi-cat.open .poi-toggle { transform: rotate(180deg); }
-        .poi-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-        .poi-cat.open .poi-content { max-height: 500px; }
-        .poi-list { list-style: none; padding: 0 0.9rem 0.7rem; }
-        .poi-list li { font-size: 0.7rem; padding: 0.3rem 0 0.3rem 0.9rem; border-bottom: 1px solid var(--sand); position: relative; cursor: pointer; transition: all 0.3s; }
-        .poi-list li:last-child { border-bottom: none; }
-        .poi-list li::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--bronze); opacity: 0.7; }
-        .poi-list li:hover { color: var(--bronze); padding-left: 1.1rem; }
-        .poi-list li.active { background: rgba(176,141,87,0.1); color: var(--bronze); font-weight: 500; }
+        .map-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 360px; gap: 0; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .map-frame { height: 560px; position: relative; overflow: hidden; }
+        #locationMap { width: 100%; height: 100%; }
+        #locationMap .leaflet-tile { filter: sepia(20%) saturate(85%); }
+        #locationMap.photo-mode .leaflet-tile { filter: none; }
+        .map-type-switcher { position: absolute; top: 10px; right: 10px; z-index: 1000; display: flex; gap: 4px; }
+        .map-type-btn { padding: 4px 8px; font-size: 0.58rem; letter-spacing: 0.06em; text-transform: uppercase; font-family: var(--sans); border: 1px solid rgba(0,0,0,0.2); background: rgba(250,248,244,0.92); color: var(--charcoal); cursor: pointer; transition: all 0.2s; border-radius: 2px; backdrop-filter: blur(4px); }
+        .map-type-btn:hover { background: white; }
+        .map-type-btn.active { background: var(--obsidian); border-color: var(--obsidian); color: white; }
+        .leaflet-control-attribution { display: none !important; }
+        .poi-popup-wrapper .leaflet-popup-content-wrapper { border-radius: 10px; overflow: hidden; padding: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.18); }
+        .poi-popup-wrapper .leaflet-popup-content { margin: 0; width: 290px !important; }
+        .poi-rich-popup { font-family: var(--sans); }
+        .poi-popup-photo { width: 100%; height: 110px; overflow: hidden; background: linear-gradient(135deg, #b08d57 0%, #1a1714 100%); display: flex; align-items: center; justify-content: center; }
+        .poi-popup-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .poi-popup-initials { font-size: 36px; font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 0.05em; }
+        .poi-popup-body { padding: 12px 14px 11px; }
+        .poi-popup-name { font-size: 14px; font-weight: 700; color: var(--obsidian); display: block; margin-bottom: 4px; }
+        .poi-popup-tag { display: inline-block; background: #f0ede8; color: var(--bronze); font-size: 9.5px; padding: 1px 7px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+        .poi-popup-info { font-size: 11px; line-height: 1.75; color: #555; }
+        .poi-popup-info a { color: #1a73e8; text-decoration: none; }
+        .poi-popup-actions { margin-top: 10px; display: flex; gap: 12px; border-top: 1px solid #eee; padding-top: 9px; }
+        .poi-popup-actions a { font-size: 10px; font-weight: 700; text-decoration: none; letter-spacing: 0.03em; }
+        .poi-popup-actions a.gm { color: #1a73e8; }
+        .poi-popup-actions a.mc { color: #cc0000; }
+        .leaflet-control-zoom { border: none !important; box-shadow: 0 1px 6px rgba(0,0,0,0.15) !important; }
+        .leaflet-control-zoom a { color: var(--charcoal) !important; }
+        .apt-marker div { width: 14px; height: 14px; background: var(--bronze); border-radius: 50%; border: 2px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+        .poi-marker div { width: 14px; height: 14px; background: var(--obsidian); border-radius: 50%; border: 2px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+        .route-info { flex-shrink: 0; max-height: 0; overflow: hidden; transition: max-height 0.35s ease; border-bottom: 1px solid var(--sand); background: var(--ivory); }
+        .route-info.visible { max-height: 230px; }
+        .route-info-inner { padding: 0.55rem 1.1rem 0.6rem; overflow-y: auto; max-height: 230px; }
+        .route-summary { display: flex; align-items: center; gap: 0.5rem; padding: 0.15rem 0; font-size: 0.78rem; color: var(--charcoal); }
+        .route-summary strong { font-size: 0.95rem; color: var(--obsidian); }
+        .transit-timeline { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.1rem 0; }
+        .tleg { display: flex; align-items: center; gap: 0.55rem; font-size: 0.68rem; line-height: 1.4; color: var(--charcoal); }
+        .tleg-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 18px; padding: 0 4px; border-radius: 3px; font-size: 0.58rem; font-weight: 700; font-family: var(--sans); flex-shrink: 0; white-space: nowrap; }
+        .tleg-name { flex: 1; }
+        .tleg-stop { opacity: 0.6; margin-left: 0.15rem; font-size: 0.64rem; }
+        .tleg-total { margin-top: 0.35rem; padding-top: 0.35rem; border-top: 1px solid var(--sand); font-size: 0.72rem; color: var(--charcoal); }
+        .tleg-total strong { font-size: 0.82rem; color: var(--obsidian); }
+
+        .poi-panel-wrap { background: var(--ivory); display: flex; flex-direction: column; height: 560px; }
+        .poi-tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 1rem 1rem 0.8rem; border-bottom: 1px solid var(--sand); flex-shrink: 0; }
+        .poi-tab { padding: 0.3rem 0.7rem; font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid rgba(0,0,0,0.15); background: transparent; color: var(--charcoal); cursor: pointer; transition: all 0.2s; }
+        .poi-tab:hover { border-color: var(--bronze); color: var(--bronze); }
+        .poi-tab.active { background: var(--bronze); border-color: var(--bronze); color: white; }
+        .poi-list-wrap { flex: 1; overflow-y: auto; }
+        .poi-list-wrap::-webkit-scrollbar { width: 3px; }
+        .poi-list-wrap::-webkit-scrollbar-thumb { background: var(--bronze); }
+        .poi-panel { display: none; }
+        .poi-panel.active { display: block; }
+        .poi-entry { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1.1rem; border-bottom: 1px solid var(--sand); font-size: 0.78rem; color: var(--charcoal); cursor: pointer; transition: all 0.2s; }
+        .poi-entry:last-child { border-bottom: none; }
+        .poi-entry:hover { color: var(--bronze); background: rgba(176,141,87,0.04); }
+        .poi-entry.active { color: var(--bronze); font-weight: 500; }
+        .poi-walk { font-size: 0.62rem; color: var(--bronze); opacity: 0.7; white-space: nowrap; margin-left: 0.75rem; flex-shrink: 0; }
+        .poi-mode-toggle { display: flex; gap: 0.3rem; padding: 0.5rem 1rem; border-bottom: 1px solid var(--sand); flex-shrink: 0; }
+        .poi-mode { padding: 0.2rem 0.55rem; font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; font-family: var(--sans); border: 1px solid rgba(0,0,0,0.12); background: transparent; color: var(--charcoal); cursor: pointer; transition: all 0.2s; }
+        .poi-mode:hover { border-color: var(--bronze); color: var(--bronze); }
+        .poi-mode.active { background: var(--obsidian); border-color: var(--obsidian); color: white; }
         
         .contact { background: var(--obsidian); color: var(--ivory); text-align: center; }
         .contact .section-label { color: var(--bronze); }
@@ -303,7 +446,8 @@
             .features { grid-template-columns: 1fr; max-width: 400px; }
             .details-grid { grid-template-columns: repeat(2, 1fr); }
             .map-container { grid-template-columns: 1fr; }
-            .poi-sidebar { max-height: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+            .poi-panel-wrap { height: auto; }
+            .poi-list-wrap { max-height: 320px; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); }
             .gallery-item:first-child { grid-column: span 2; grid-row: span 1; }
         }
@@ -312,14 +456,15 @@
             .nav-links { display: none; }
             section { padding: 3rem 1.5rem; }
             .details-grid { grid-template-columns: 1fr; }
-            .poi-sidebar { grid-template-columns: 1fr; }
             .contact-grid { flex-direction: column; gap: 2rem; }
             footer { flex-direction: column; gap: 1rem; text-align: center; }
             .map-frame { height: 400px; }
+            .poi-list-wrap { max-height: 260px; }
             .gallery-grid { grid-template-columns: 1fr; }
             .gallery-item:first-child { grid-column: span 1; }
         }
     </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
     <nav>
@@ -375,7 +520,7 @@
             <div class="section-label" data-i18n="concept.label">Unique Concept</div>
             <h2 class="section-title" data-i18n="concept.title">Art Apartment <em>Experience</em></h2>
         </div>
-        <p class="concept-desc" data-i18n="concept.desc">The apartment features original paintings and lithographs by top local artists. During your stay, form a connection – and purchase your favorite as a memento.</p>
+        <p class="concept-desc" data-i18n="concept.desc">The apartment features original paintings and lithographs by top local artists. During your stay, form a connection ‚Äď and purchase your favorite as a memento.</p>
         <div class="features">
             <div class="feature">
                 <div class="feature-num">01</div>
@@ -401,10 +546,78 @@
             <h2 class="section-title" data-i18n="details.title">Apartment in <em>Astrid Garden</em></h2>
         </div>
         <div class="details-grid">
-            <div class="detail-item"><div class="detail-val">3+kk</div><div class="detail-label" data-i18n="d.layout">Layout + storage</div></div>
-            <div class="detail-item"><div class="detail-val">73.5 m²</div><div class="detail-label" data-i18n="d.area">Floor area</div></div>
-            <div class="detail-item"><div class="detail-val">13.7 m²</div><div class="detail-label" data-i18n="d.balconies">Balconies (2×)</div></div>
-            <div class="detail-item"><div class="detail-val" data-i18n="d.entrance">Entrance D</div><div class="detail-label">Astrid Garden</div></div>
+            <div class="detail-item">
+                <div class="detail-icon">3</div>
+                <div class="detail-val">3+kk</div>
+                <div class="detail-label" data-i18n="d.layout">Layout + storage</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon">m¬≤</div>
+                <div class="detail-val">73.5 m¬≤</div>
+                <div class="detail-label" data-i18n="d.area">Floor area</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon">B</div>
+                <div class="detail-val">13.7 m¬≤</div>
+                <div class="detail-label" data-i18n="d.balconies">Balconies (2√ó)</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon">D</div>
+                <div class="detail-val" data-i18n="d.entrance">Entrance D</div>
+                <div class="detail-label">Astrid Garden</div>
+            </div>
+        </div>
+        <div class="parking-callout">
+            <div class="parking-icon">P</div>
+            <div class="parking-body">
+                <div class="parking-title" data-i18n="parking.title">Underground Parking</div>
+                <div class="parking-sub" data-i18n="parking.sub">Available at extra cost</div>
+                <div class="parking-desc" data-i18n="parking.desc">Secure parking space in the residential underground garage. Save on parking fees and enjoy peace of mind with a designated spot for your vehicle.</div>
+            </div>
+        </div>
+        <div class="parking-callout">
+            <div class="parking-icon">W</div>
+            <div class="parking-body">
+                <div class="parking-title" data-i18n="workshop.title">Shared Workshop & Bicycle Storage</div>
+                <div class="parking-sub" data-i18n="workshop.sub">Building amenity ¬∑ Included</div>
+                <div class="parking-desc" data-i18n="workshop.desc">The building's underground facilities include a shared workshop with essential tools and a secure, lockable bicycle storage room ‚ÄĒ perfect support for an active lifestyle in the heart of Prague.</div>
+            </div>
+        </div>
+        <div class="equip-section">
+            <div class="equip-section-label" data-i18n="equip.label">Included Equipment</div>
+            <div class="equip-grid">
+                <div class="equip-item">
+                    <div class="equip-item-brand">Samsung</div>
+                    <div class="equip-item-name" data-i18n="eq.fridge">American fridge with ice maker</div>
+                </div>
+                <div class="equip-item">
+                    <div class="equip-item-brand">AEG</div>
+                    <div class="equip-item-name" data-i18n="eq.steam">Steam oven</div>
+                </div>
+                <div class="equip-item">
+                    <div class="equip-item-brand">AEG</div>
+                    <div class="equip-item-name" data-i18n="eq.micro">Microwave oven</div>
+                </div>
+                <div class="equip-item">
+                    <div class="equip-item-brand">Nespresso</div>
+                    <div class="equip-item-name" data-i18n="eq.coffee">Coffee machine</div>
+                </div>
+                <div class="equip-item">
+                    <div class="equip-item-name" data-i18n="eq.wash">Washer-dryer</div>
+                </div>
+                <div class="equip-item">
+                    <div class="equip-item-brand">LG 55‚Ä≥</div>
+                    <div class="equip-item-name" data-i18n="eq.tv">Smart TV + Soundbar</div>
+                </div>
+                <div class="equip-item">
+                    <div class="equip-item-brand">Pro-Ject</div>
+                    <div class="equip-item-name" data-i18n="eq.vinyl">Turntable</div>
+                </div>
+                <div class="equip-item">
+                    <div class="equip-item-brand">MATE</div>
+                    <div class="equip-item-name" data-i18n="eq.bike">Design e-bike</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -426,186 +639,180 @@
     </section>
 
     <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" onclick="closeLightbox()">×</button>
-        <button class="lightbox-nav lightbox-prev" onclick="lightboxPrev()">‹</button>
+        <button class="lightbox-close" onclick="closeLightbox()">√ó</button>
+        <button class="lightbox-nav lightbox-prev" onclick="lightboxPrev()">‚ÄĻ</button>
         <div class="lightbox-content">
             <img id="lightboxImg" src="" alt="">
             <div class="lightbox-caption" id="lightboxCaption"></div>
         </div>
-        <button class="lightbox-nav lightbox-next" onclick="lightboxNext()">›</button>
+        <button class="lightbox-nav lightbox-next" onclick="lightboxNext()">‚Äļ</button>
     </div>
 
     <section class="map-section" id="location">
         <div class="section-header">
-            <div class="section-label">Holešovice · Prague 7</div>
+            <div class="section-label">HoleŇ°ovice ¬∑ Prague 7</div>
             <h2 class="section-title" data-i18n="map.title">Strategic <em>Location</em></h2>
         </div>
         <p class="map-intro" data-i18n="map.desc">Perfect balance between cultural life and accessibility. International schools nearby. Rich art scene and riverside promenades.</p>
         
         <div class="map-container">
             <div class="map-frame">
-                <iframe id="googleMap" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=U+Průhonu+700/10,+Praha+7&zoom=15" allowfullscreen="" loading="lazy"></iframe>
+                <div id="locationMap"></div>
+                <div class="map-type-switcher">
+                    <button class="map-type-btn" data-i18n="map.btn.map" onclick="switchBaseMap('map',this)">Map</button>
+                    <button class="map-type-btn" data-i18n="map.btn.photo" onclick="switchBaseMap('photo',this)">Photo</button>
+                    <button class="map-type-btn active" data-i18n="map.btn.simple" onclick="switchBaseMap('simple',this)">Simple</button>
+                </div>
             </div>
-            <div class="poi-sidebar">
-                <!-- Restaurants & Bars -->
-                <div class="poi-cat open">
-                    <div class="poi-header" onclick="togglePoi(this)"><span>🍽 Restaurants & Bars</span><span class="poi-toggle">▼</span></div>
-                    <div class="poi-content">
-                        <ul class="poi-list">
-                            <li data-place="Mexická restaurace, Komunardů 42, Praha 7" onclick="showPlace(this)">Mexická</li>
-                            <li data-place="PRU58, Tusarova 58, Praha 7" onclick="showPlace(this)">PRU58</li>
-                            <li data-place="Slice Slice Baby, Dělnická 19, Praha 7" onclick="showPlace(this)">Slice Slice Baby</li>
-                            <li data-place="Sip Sip Hooray, Dělnická 19, Praha 7" onclick="showPlace(this)">Sip Sip Hooray</li>
-                            <li data-place="Lokál Nad Stromovkou, Praha 7" onclick="showPlace(this)">Lokál Nad Stromovkou</li>
-                            <li data-place="Home Kitchen, Janovského, Praha 7" onclick="showPlace(this)">Home Kitchen</li>
-                            <li data-place="Vnitroblock, Tusarova, Praha 7" onclick="showPlace(this)">Vnitroblock</li>
-                            <li data-place="Cobra bar, Milady Horákové, Praha 7" onclick="showPlace(this)">Cobra</li>
-                            <li data-place="Informace bar, Letenské náměstí, Praha 7" onclick="showPlace(this)">Informace</li>
-                            <li data-place="Brasserie La Gare, Praha 7 Letná" onclick="showPlace(this)">Brasserie La Gare</li>
-                            <li data-place="Burgerman, Praha 7" onclick="showPlace(this)">Burgerman</li>
-                            <li data-place="Big Smokers, Praha 7 Holešovice" onclick="showPlace(this)">Big Smokers</li>
-                            <li data-place="Paralelní Polis, Dělnická, Praha 7" onclick="showPlace(this)">Paralelní Polis</li>
-                            <li data-place="Ramen, Dělnická Osadní, Praha 7" onclick="showPlace(this)">Ramen Dělnická</li>
-                        </ul>
-                    </div>
+            <div class="poi-panel-wrap">
+                <div id="routeInfo" class="route-info"></div>
+                <div class="poi-mode-toggle">
+                    <button class="poi-mode active" data-mode="walk" onclick="setMode('walk')">Walk</button>
+                    <button class="poi-mode" data-mode="bike" onclick="setMode('bike')">Bike</button>
+                    <button class="poi-mode" data-mode="transit" onclick="setMode('transit')">Public Transport</button>
+                    <button class="poi-mode" data-mode="car" onclick="setMode('car')">Car</button>
                 </div>
-                
-                <!-- Cafés & Bakeries -->
-                <div class="poi-cat">
-                    <div class="poi-header" onclick="togglePoi(this)"><span>☕ Cafés & Bakeries</span><span class="poi-toggle">▼</span></div>
-                    <div class="poi-content">
-                        <ul class="poi-list">
-                            <li data-place="Ema espresso bar, Komunardů 42, Praha 7" onclick="showPlace(this)">Ema Espresso Bar</li>
-                            <li data-place="Miners Coffee, Komunardů, Praha 7" onclick="showPlace(this)">Miners Coffee</li>
-                            <li data-place="Eska Letná, Veletržní 42, Praha 7" onclick="showPlace(this)">Eska Letná</li>
-                            <li data-place="Phil's Corner, Praha 7" onclick="showPlace(this)">Phil's Corner</li>
-                            <li data-place="Café Letka, Praha 7" onclick="showPlace(this)">Café Letka</li>
-                            <li data-place="Antonínovo pekařství, Strossmayerovo náměstí 11, Praha 7" onclick="showPlace(this)">Antonínovo pekařství</li>
-                            <li data-place="Naše Toustárna, V Háji 10, Praha 7" onclick="showPlace(this)">Naše Toustárna</li>
-                            <li data-place="DOX Café, Poupětova, Praha 7" onclick="showPlace(this)">DOX Café</li>
-                        </ul>
-                    </div>
+                <div class="poi-tabs">
+                    <button class="poi-tab" onclick="selectTab(this,'film')">Film Studios</button>
+                    <button class="poi-tab" onclick="selectTab(this,'cafes')">Caf√©s</button>
+                    <button class="poi-tab active" onclick="selectTab(this,'dining')">Dining</button>
+                    <button class="poi-tab" onclick="selectTab(this,'culture')">Culture</button>
+                    <button class="poi-tab" onclick="selectTab(this,'nightlife')">Nightlife</button>
+                    <button class="poi-tab" onclick="selectTab(this,'markets')">Markets</button>
+                    <button class="poi-tab" onclick="selectTab(this,'fitness')">Fitness</button>
+                    <button class="poi-tab" onclick="selectTab(this,'parks')">Parks</button>
+                    <button class="poi-tab" onclick="selectTab(this,'schools')">Schools</button>
+                    <button class="poi-tab" onclick="selectTab(this,'services')">Services</button>
+                    <button class="poi-tab" onclick="selectTab(this,'downtown')">Downtown</button>
                 </div>
-                
-                <!-- Galleries & Art -->
-                <div class="poi-cat">
-                    <div class="poi-header" onclick="togglePoi(this)"><span>🖼 Galleries & Art</span><span class="poi-toggle">▼</span></div>
-                    <div class="poi-content">
-                        <ul class="poi-list">
-                            <li data-place="DOX Centre for Contemporary Art, Poupětova, Praha 7" onclick="showPlace(this)">DOX Centre</li>
-                            <li data-place="Veletržní palác, Dukelských hrdinů, Praha 7" onclick="showPlace(this)">Veletržní palác</li>
-                            <li data-place="Kunsthalle Praha, Klárov 5, Praha 1" onclick="showPlace(this)">Kunsthalle Praha</li>
-                            <li data-place="Karpuchina Gallery, Rybná 22, Praha 1" onclick="showPlace(this)">Karpuchina Gallery</li>
-                            <li data-place="Galerie Villa Pellé, Praha 6 Bubeneč" onclick="showPlace(this)">Villa Pellé</li>
-                            <li data-place="Trafo Gallery, Praha 7" onclick="showPlace(this)">Trafo Gallery</li>
-                            <li data-place="The Chemistry Gallery, Praha 7" onclick="showPlace(this)">The Chemistry Gallery</li>
-                        </ul>
+                <div class="poi-list-wrap">
+                    <div class="poi-panel" id="poi-film">
+                        <div class="poi-entry" data-lat="50.1284388" data-lon="14.5120163" data-walk="102" data-bike="37" data-transit="22" data-car="10" onclick="showPlace(this)"><span>Prague Studios</span><span class="poi-walk">10 min</span></div>
+                        <div class="poi-entry" data-lat="50.1430750" data-lon="14.5174880" data-walk="141" data-bike="45" data-transit="28" data-car="12" onclick="showPlace(this)"><span>Jordan Studios</span><span class="poi-walk">12 min</span></div>
+                        <div class="poi-entry" data-lat="50.0307569" data-lon="14.3868750" data-walk="141" data-bike="60" data-transit="45" data-car="21" onclick="showPlace(this)"><span>Barrandov Studios</span><span class="poi-walk">21 min</span></div>
                     </div>
-                </div>
-                
-                <!-- Theatres -->
-                <div class="poi-cat">
-                    <div class="poi-header" onclick="togglePoi(this)"><span>🎭 Theatres</span><span class="poi-toggle">▼</span></div>
-                    <div class="poi-content">
-                        <ul class="poi-list">
-                            <li data-place="Jatka78, Holešovická tržnice, Praha 7" onclick="showPlace(this)">Jatka78</li>
-                            <li data-place="La Fabrika, Komunardů 30, Praha 7" onclick="showPlace(this)">La Fabrika</li>
-                        </ul>
+                    <div class="poi-panel active" id="poi-dining">
+                        <div class="poi-entry" data-lat="50.1033147" data-lon="14.4472380" data-walk="4" data-bike="2" data-transit="6" data-car="2" onclick="showPlace(this)"><span>Slice Slice Baby</span><span class="poi-walk">4 min</span></div>
+                        <div class="poi-entry" data-lat="50.1058700" data-lon="14.4501203" data-walk="6" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>Mexick√°</span><span class="poi-walk">6 min</span></div>
+                        <div class="poi-entry" data-lat="50.1034341" data-lon="14.4501605" data-walk="7" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>Lasagneria</span><span class="poi-walk">7 min</span></div>
+                        <div class="poi-entry" data-lat="50.1023243" data-lon="14.4498046" data-walk="7" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>Bento Caf√© & Bistro</span><span class="poi-walk">7 min</span></div>
+                        <div class="poi-entry" data-lat="50.1030518" data-lon="14.4509132" data-walk="8" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>Big Smokers</span><span class="poi-walk">8 min</span></div>
+                        <div class="poi-entry" data-lat="50.1077566" data-lon="14.4501027" data-walk="8" data-bike="2" data-transit="8" data-car="2" onclick="showPlace(this)"><span>Puglia</span><span class="poi-walk">8 min</span></div>
+                        <div class="poi-entry" data-lat="50.1074549" data-lon="14.4509104" data-walk="9" data-bike="3" data-transit="8" data-car="2" onclick="showPlace(this)"><span>The Eatery</span><span class="poi-walk">9 min</span></div>
+                        <div class="poi-entry" data-lat="50.1032434" data-lon="14.4521733" data-walk="9" data-bike="3" data-transit="8" data-car="3" onclick="showPlace(this)"><span>Ramen Dńõlnick√°</span><span class="poi-walk">9 min</span></div>
+                        <div class="poi-entry" data-lat="50.1018152" data-lon="14.4534124" data-walk="9" data-bike="3" data-transit="8" data-car="3" onclick="showPlace(this)"><span>PRU58</span><span class="poi-walk">9 min</span></div>
+                        <div class="poi-entry" data-lat="50.0992274" data-lon="14.4450921" data-walk="10" data-bike="3" data-transit="9" data-car="3" onclick="showPlace(this)"><span>SaSaZu restaurant</span><span class="poi-walk">10 min</span></div>
+                        <div class="poi-entry" data-lat="50.0985000" data-lon="14.4448000" data-walk="11" data-bike="4" data-transit="9" data-car="3" onclick="showPlace(this)"><span>Na Woodmanu</span><span class="poi-walk">11 min</span></div>
+                        <div class="poi-entry" data-lat="50.0987027" data-lon="14.4341138" data-walk="17" data-bike="5" data-transit="12" data-car="4" onclick="showPlace(this)"><span>Brasserie La Gare</span><span class="poi-walk">17 min</span></div>
+                        <div class="poi-entry" data-lat="50.0983318" data-lon="14.4343545" data-walk="18" data-bike="5" data-transit="13" data-car="4" onclick="showPlace(this)"><span>Home Kitchen</span><span class="poi-walk">18 min</span></div>
+                        <div class="poi-entry" data-lat="50.0931588" data-lon="14.4466848" data-walk="21" data-bike="6" data-transit="14" data-car="5" onclick="showPlace(this)"><span>Lok√°l Hamburk</span><span class="poi-walk">21 min</span></div>
+                        <div class="poi-entry" data-lat="50.0931588" data-lon="14.4466848" data-walk="21" data-bike="6" data-transit="14" data-car="5" onclick="showPlace(this)"><span>TŇôi Kohouti</span><span class="poi-walk">21 min</span></div>
+                        <div class="poi-entry" data-lat="50.0998619" data-lon="14.4251421" data-walk="24" data-bike="7" data-transit="16" data-car="6" onclick="showPlace(this)"><span>Burgerman</span><span class="poi-walk">24 min</span></div>
+                        <div class="poi-entry" data-lat="50.1030782" data-lon="14.4183794" data-walk="31" data-bike="9" data-transit="19" data-car="6" onclick="showPlace(this)"><span>Lok√°l Nad Stromovkou</span><span class="poi-walk">31 min</span></div>
+                        <div class="poi-entry" data-lat="50.0891695" data-lon="14.4322640" data-walk="32" data-bike="9" data-transit="20" data-car="6" onclick="showPlace(this)"><span>La Bottega Linka</span><span class="poi-walk">32 min</span></div>
+                        <div class="poi-entry" data-lat="50.0881862" data-lon="14.4307779" data-walk="34" data-bike="10" data-transit="21" data-car="7" onclick="showPlace(this)"><span>SIA</span><span class="poi-walk">34 min</span></div>
+                        <div class="poi-entry" data-lat="50.0873200" data-lon="14.4308500" data-walk="36" data-bike="10" data-transit="22" data-car="7" onclick="showPlace(this)"><span>ńĆerven√Ĺ Jelen</span><span class="poi-walk">36 min</span></div>
+                        <div class="poi-entry" data-lat="50.0800800" data-lon="14.4165500" data-walk="55" data-bike="16" data-transit="30" data-car="10" onclick="showPlace(this)"><span>Alma</span><span class="poi-walk">55 min</span></div>
                     </div>
-                </div>
-                
-                <!-- International Schools -->
-                <div class="poi-cat">
-                    <div class="poi-header" onclick="togglePoi(this)"><span>🎓 International Schools</span><span class="poi-toggle">▼</span></div>
-                    <div class="poi-content">
-                        <ul class="poi-list">
-                            <li data-place="International School of Prague, Nebušice" onclick="showPlace(this)">International School of Prague</li>
-                            <li data-place="Riverside School, Praha 6 Sedlec" onclick="showPlace(this)">Riverside School</li>
-                            <li data-place="Prague British International School, Praha" onclick="showPlace(this)">Prague British Int. School</li>
-                            <li data-place="BASIS Prague International School, Bubeneč" onclick="showPlace(this)">BASIS Prague</li>
-                            <li data-place="Dětské hřiště Ortenovo náměstí, Praha 7" onclick="showPlace(this)">Playground Ortenovo nám.</li>
-                            <li data-place="Dětské hřiště Stromovka, Praha 7" onclick="showPlace(this)">Playground Stromovka</li>
-                            <li data-place="Dětské hřiště Letná, Praha 7" onclick="showPlace(this)">Playground Letná</li>
-                        </ul>
+                    <div class="poi-panel" id="poi-cafes">
+                        <div class="poi-entry" data-lat="50.1044300" data-lon="14.4466500" data-walk="2" data-bike="2" data-transit="5" data-car="2" onclick="showPlace(this)"><span>Kafe Osada</span><span class="poi-walk">2 min</span></div>
+                        <div class="poi-entry" data-lat="50.1067852" data-lon="14.4475546" data-walk="4" data-bike="2" data-transit="6" data-car="2" onclick="showPlace(this)"><span>DOX Caf√©</span><span class="poi-walk">4 min</span></div>
+                        <div class="poi-entry" data-lat="50.1019505" data-lon="14.4493310" data-walk="5" data-bike="2" data-transit="6" data-car="2" onclick="showPlace(this)"><span>Vnitroblock</span><span class="poi-walk">5 min</span></div>
+                        <div class="poi-entry" data-lat="50.1056500" data-lon="14.4496700" data-walk="6" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>Polo Caf√©</span><span class="poi-walk">6 min</span></div>
+                        <div class="poi-entry" data-lat="50.1062336" data-lon="14.4498597" data-walk="6" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>Miners Coffee</span><span class="poi-walk">6 min</span></div>
+                        <div class="poi-entry" data-lat="50.1034341" data-lon="14.4501605" data-walk="7" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>Phil's Corner</span><span class="poi-walk">7 min</span></div>
+                        <div class="poi-entry" data-lat="50.1058809" data-lon="14.4504221" data-walk="7" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>Ema Espresso Bar</span><span class="poi-walk">7 min</span></div>
+                        <div class="poi-entry" data-lat="50.1033998" data-lon="14.4504973" data-walk="7" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>Paraleln√≠ Polis</span><span class="poi-walk">7 min</span></div>
+                        <div class="poi-entry" data-lat="50.1019174" data-lon="14.4541906" data-walk="11" data-bike="3" data-transit="9" data-car="2" onclick="showPlace(this)"><span>NaŇ°e Toust√°rna</span><span class="poi-walk">11 min</span></div>
+                        <div class="poi-entry" data-lat="50.0986694" data-lon="14.4338006" data-walk="15" data-bike="4" data-transit="11" data-car="3" onclick="showPlace(this)"><span>Anton√≠novo pekaŇôstv√≠</span><span class="poi-walk">15 min</span></div>
+                        <div class="poi-entry" data-lat="50.0960395" data-lon="14.4482875" data-walk="16" data-bike="5" data-transit="12" data-car="4" onclick="showPlace(this)"><span>PŇô√≠stav Karl√≠n</span><span class="poi-walk">16 min</span></div>
+                        <div class="poi-entry" data-lat="50.1009659" data-lon="14.4259482" data-walk="23" data-bike="6" data-transit="15" data-car="5" onclick="showPlace(this)"><span>Eska Letn√°</span><span class="poi-walk">23 min</span></div>
+                        <div class="poi-entry" data-lat="50.0981896" data-lon="14.4253570" data-walk="26" data-bike="7" data-transit="17" data-car="5" onclick="showPlace(this)"><span>Caf√© Letka</span><span class="poi-walk">26 min</span></div>
                     </div>
-                </div>
-                
-                <!-- Holešovická Tržnice -->
-                <div class="poi-cat">
-                    <div class="poi-header" onclick="togglePoi(this)"><span>🛒 Holešovická Tržnice</span><span class="poi-toggle">▼</span></div>
-                    <div class="poi-content">
-                        <ul class="poi-list">
-                            <li data-place="Holešovická tržnice, Bubenské nábřeží, Praha 7" onclick="showPlace(this)">Holešovická Tržnice</li>
-                            <li data-place="Manifesto Market Holešovice, Praha 7" onclick="showPlace(this)">Manifesto Market</li>
-                            <li data-place="Cross Club, Plynární, Praha 7" onclick="showPlace(this)">Cross Club</li>
-                            <li data-place="Cest restaurant, Holešovická tržnice, Praha 7" onclick="showPlace(this)">Cest</li>
-                        </ul>
+                    <div class="poi-panel" id="poi-culture">
+                        <div class="poi-entry" data-lat="50.1067852" data-lon="14.4475546" data-walk="4" data-bike="2" data-transit="6" data-car="2" onclick="showPlace(this)"><span>DOX Centre</span><span class="poi-walk">4 min</span></div>
+                        <div class="poi-entry" data-lat="50.1033318" data-lon="14.4488983" data-walk="6" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>The Chemistry Gallery</span><span class="poi-walk">6 min</span></div>
+                        <div class="poi-entry" data-lat="50.1038246" data-lon="14.4504463" data-walk="8" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>La Fabrika</span><span class="poi-walk">8 min</span></div>
+                        <div class="poi-entry" data-lat="50.1000259" data-lon="14.4465228" data-walk="9" data-bike="3" data-transit="8" data-car="2" onclick="showPlace(this)"><span>Jatka78</span><span class="poi-walk">9 min</span></div>
+                        <div class="poi-entry" data-lat="50.0988169" data-lon="14.4477838" data-walk="12" data-bike="3" data-transit="9" data-car="3" onclick="showPlace(this)"><span>Trafo Gallery</span><span class="poi-walk">12 min</span></div>
+                        <div class="poi-entry" data-lat="50.1011992" data-lon="14.4323359" data-walk="16" data-bike="4" data-transit="12" data-car="3" onclick="showPlace(this)"><span>VeletrŇĺn√≠ pal√°c</span><span class="poi-walk">16 min</span></div>
+                        <div class="poi-entry" data-lat="50.0901221" data-lon="14.4412410" data-walk="27" data-bike="8" data-transit="17" data-car="5" onclick="showPlace(this)"><span>Karl√≠n Theatre</span><span class="poi-walk">27 min</span></div>
+                        <div class="poi-entry" data-lat="50.0901424" data-lon="14.4260022" data-walk="33" data-bike="9" data-transit="20" data-car="6" onclick="showPlace(this)"><span>Karpuchina Gallery</span><span class="poi-walk">33 min</span></div>
+                        <div class="poi-entry" data-lat="50.0859615" data-lon="14.4236380" data-walk="42" data-bike="12" data-transit="24" data-car="7" onclick="showPlace(this)"><span>Estates Theatre</span><span class="poi-walk">42 min</span></div>
+                        <div class="poi-entry" data-lat="50.0990046" data-lon="14.4076759" data-walk="44" data-bike="12" data-transit="25" data-car="8" onclick="showPlace(this)"><span>Villa Pell√©</span><span class="poi-walk">44 min</span></div>
+                        <div class="poi-entry" data-lat="50.0922932" data-lon="14.4099584" data-walk="46" data-bike="13" data-transit="25" data-car="8" onclick="showPlace(this)"><span>Kunsthalle Praha</span><span class="poi-walk">46 min</span></div>
+                        <div class="poi-entry" data-lat="50.0808638" data-lon="14.4135699" data-walk="53" data-bike="15" data-transit="27" data-car="9" onclick="showPlace(this)"><span>National Theatre</span><span class="poi-walk">53 min</span></div>
                     </div>
-                </div>
-                
-                <!-- Film Studios -->
-                <div class="poi-cat">
-                    <div class="poi-header" onclick="togglePoi(this)"><span>🎬 Film Studios</span><span class="poi-toggle">▼</span></div>
-                    <div class="poi-content">
-                        <ul class="poi-list">
-                            <li data-place="Barrandov Studios, Kříženeckého náměstí, Praha 5" onclick="showPlace(this)">Barrandov Studios</li>
-                            <li data-place="Beranových 823, Praha 18 Letňany" onclick="showPlace(this)">Jordan Studios</li>
-                            <li data-place="Prague Studios, Letňany" onclick="showPlace(this)">Prague Studios</li>
-                        </ul>
+                    <div class="poi-panel" id="poi-markets">
+                        <div class="poi-entry" data-lat="50.103524" data-lon="14.444099" data-walk="3" data-bike="2" data-transit="5" data-car="2" onclick="showPlace(this)"><span>Billa</span><span class="poi-walk">3 min</span></div>
+                        <div class="poi-entry" data-lat="50.105338" data-lon="14.450173" data-walk="6" data-bike="2" data-transit="6" data-car="2" onclick="showPlace(this)"><span>dm drogerie</span><span class="poi-walk">6 min</span></div>
+                        <div class="poi-entry" data-lat="50.105599" data-lon="14.450207" data-walk="6" data-bike="2" data-transit="6" data-car="2" onclick="showPlace(this)"><span>Albert</span><span class="poi-walk">6 min</span></div>
+                        <div class="poi-entry" data-lat="50.0996716" data-lon="14.4459841" data-walk="9" data-bike="3" data-transit="8" data-car="2" onclick="showPlace(this)"><span>Farmers Market HoleŇ°ovice</span><span class="poi-walk">9 min</span></div>
+                        <div class="poi-entry" data-lat="50.101461" data-lon="14.450294" data-walk="9" data-bike="3" data-transit="8" data-car="2" onclick="showPlace(this)"><span>Lidl</span><span class="poi-walk">9 min</span></div>
+                        <div class="poi-entry" data-lat="50.0983146" data-lon="14.4443524" data-walk="12" data-bike="3" data-transit="9" data-car="3" onclick="showPlace(this)"><span>HoleŇ°ovice Market Hall</span><span class="poi-walk">12 min</span></div>
+                        <div class="poi-entry" data-lat="50.0983146" data-lon="14.4443524" data-walk="12" data-bike="3" data-transit="9" data-car="3" onclick="showPlace(this)"><span>NaŇ°e Maso</span><span class="poi-walk">12 min</span></div>
+                        <div class="poi-entry" data-lat="50.1007502" data-lon="14.4358280" data-walk="13" data-bike="4" data-transit="10" data-car="3" onclick="showPlace(this)"><span>Farmers Market Ňėez√°ńćovo sq.</span><span class="poi-walk">13 min</span></div>
+                        <div class="poi-entry" data-lat="50.0752993" data-lon="14.4390755" data-walk="54" data-bike="15" data-transit="28" data-car="9" onclick="showPlace(this)"><span>Farmers Market IP Pavlova</span><span class="poi-walk">54 min</span></div>
+                        <div class="poi-entry" data-lat="50.0689948" data-lon="14.4143606" data-walk="74" data-bike="21" data-transit="34" data-car="13" onclick="showPlace(this)"><span>Farmers Market N√°plavka P2</span><span class="poi-walk">74 min</span></div>
                     </div>
-                </div>
-                
-                <!-- Fitness -->
-                <div class="poi-cat">
-                    <div class="poi-header" onclick="togglePoi(this)"><span>💪 Fitness</span><span class="poi-toggle">▼</span></div>
-                    <div class="poi-content">
-                        <ul class="poi-list">
-                            <li data-place="Next.Move, Dělnická 9, Praha 7" onclick="showPlace(this)">Next.Move</li>
-                            <li data-place="Form Factory Holešovice, Praha 7" onclick="showPlace(this)">Form Factory</li>
-                            <li data-place="The Gym Argentinská, Praha 7" onclick="showPlace(this)">The Gym Argentinská</li>
-                            <li data-place="OneGym Holešovice, Praha 7" onclick="showPlace(this)">OneGym</li>
-                            <li data-place="Max Fitness, Komunardů, Praha 7" onclick="showPlace(this)">Max Fitness</li>
-                            <li data-place="FITINN Stromovka, Veletržní, Praha 7" onclick="showPlace(this)">FITINN</li>
-                        </ul>
+                    <div class="poi-panel" id="poi-fitness">
+                        <div class="poi-entry" data-lat="50.1042300" data-lon="14.4435400" data-walk="2" data-bike="2" data-transit="5" data-car="2" onclick="showPlace(this)"><span>The Mood</span><span class="poi-walk">2 min</span></div>
+                        <div class="poi-entry" data-lat="50.1044864" data-lon="14.4466502" data-walk="2" data-bike="2" data-transit="5" data-car="2" onclick="showPlace(this)"><span>Form Factory</span><span class="poi-walk">2 min</span></div>
+                        <div class="poi-entry" data-lat="50.1032659" data-lon="14.4449684" data-walk="3" data-bike="2" data-transit="5" data-car="2" onclick="showPlace(this)"><span>Next.Move</span><span class="poi-walk">3 min</span></div>
+                        <div class="poi-entry" data-lat="50.1055000" data-lon="14.4490000" data-walk="5" data-bike="2" data-transit="6" data-car="2" onclick="showPlace(this)"><span>Gym Osadn√≠</span><span class="poi-walk">5 min</span></div>
+                        <div class="poi-entry" data-lat="50.1084835" data-lon="14.4436808" data-walk="7" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>The Gym</span><span class="poi-walk">7 min</span></div>
+                        <div class="poi-entry" data-lat="50.1007753" data-lon="14.4453827" data-walk="7" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>OneGym</span><span class="poi-walk">7 min</span></div>
+                        <div class="poi-entry" data-lat="50.1038246" data-lon="14.4504463" data-walk="8" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>Max Fitness</span><span class="poi-walk">8 min</span></div>
+                        <div class="poi-entry" data-lat="50.1009408" data-lon="14.4260048" data-walk="23" data-bike="6" data-transit="15" data-car="4" onclick="showPlace(this)"><span>FITINN Stromovka</span><span class="poi-walk">23 min</span></div>
                     </div>
-                </div>
-                
-                <!-- Barber Shops -->
-                <div class="poi-cat">
-                    <div class="poi-header" onclick="togglePoi(this)"><span>💈 Barber Shops</span><span class="poi-toggle">▼</span></div>
-                    <div class="poi-content">
-                        <ul class="poi-list">
-                            <li data-place="Pepe's Barbershop, Praha 7 Holešovice" onclick="showPlace(this)">Pepe's Barbershop</li>
-                            <li data-place="West Wood Barbershop, Jankovcova, Praha 7" onclick="showPlace(this)">West Wood Barbershop</li>
-                            <li data-place="Icon Barbershop, Jateční, Praha 7" onclick="showPlace(this)">Icon Barbershop</li>
-                            <li data-place="The Crown Barbershop, Tusarova, Praha 7" onclick="showPlace(this)">The Crown Barbershop</li>
-                            <li data-place="Holičství Holešovice, Jankovcova, Praha 7" onclick="showPlace(this)">Holičství Holešovice</li>
-                        </ul>
+                    <div class="poi-panel" id="poi-parks">
+                        <div class="poi-entry" data-lat="50.1010000" data-lon="14.4530000" data-walk="12" data-bike="3" data-transit="9" data-car="3" onclick="showPlace(this)"><span>HoleŇ°ovice Riverbank</span><span class="poi-walk">12 min</span></div>
+                        <div class="poi-entry" data-lat="50.0966831" data-lon="14.4399492" data-walk="16" data-bike="4" data-transit="12" data-car="4" onclick="showPlace(this)"><span>Ň†tvanice Island</span><span class="poi-walk">16 min</span></div>
+                        <div class="poi-entry" data-lat="50.0939753" data-lon="14.4432908" data-walk="20" data-bike="6" data-transit="14" data-car="4" onclick="showPlace(this)"><span>Rohan Riverbank</span><span class="poi-walk">20 min</span></div>
+                        <div class="poi-entry" data-lat="50.1064783" data-lon="14.4126968" data-walk="37" data-bike="10" data-transit="22" data-car="7" onclick="showPlace(this)"><span>Stromovka</span><span class="poi-walk">37 min</span></div>
+                        <div class="poi-entry" data-lat="50.0964045" data-lon="14.4141409" data-walk="39" data-bike="11" data-transit="23" data-car="7" onclick="showPlace(this)"><span>Letn√° Gardens</span><span class="poi-walk">39 min</span></div>
+                        <div class="poi-entry" data-lat="50.1164023" data-lon="14.4130233" data-walk="42" data-bike="12" data-transit="24" data-car="8" onclick="showPlace(this)"><span>Troja Chateau</span><span class="poi-walk">42 min</span></div>
                     </div>
-                </div>
-                
-                <!-- Nature & Parks -->
-                <div class="poi-cat">
-                    <div class="poi-header" onclick="togglePoi(this)"><span>🌳 Nature & Parks</span><span class="poi-toggle">▼</span></div>
-                    <div class="poi-content">
-                        <ul class="poi-list">
-                            <li data-place="Stromovka Park, Praha 7" onclick="showPlace(this)">Stromovka</li>
-                            <li data-place="Letenské sady, Praha 7" onclick="showPlace(this)">Letná Gardens</li>
-                            <li data-place="Náplavka Holešovice, Praha 7" onclick="showPlace(this)">Holešovice Riverbank</li>
-                            <li data-place="Trojský zámek, Praha" onclick="showPlace(this)">Troja Chateau</li>
-                        </ul>
+                    <div class="poi-panel" id="poi-schools">
+                        <div class="poi-entry" data-lat="50.1092124" data-lon="14.4476448" data-walk="8" data-bike="4" data-transit="9" data-car="2" onclick="showPlace(this)"><span>Playground Ortenovo sq.</span><span class="poi-walk">8 min</span></div>
+                        <div class="poi-entry" data-lat="50.0964045" data-lon="14.4141409" data-walk="25" data-bike="13" data-transit="18" data-car="6" onclick="showPlace(this)"><span>Playground Letn√°</span><span class="poi-walk">25 min</span></div>
+                        <div class="poi-entry" data-lat="50.1064783" data-lon="14.4126968" data-walk="30" data-bike="15" data-transit="22" data-car="7" onclick="showPlace(this)"><span>Playground Stromovka</span><span class="poi-walk">30 min</span></div>
+                        <div class="poi-entry" data-lat="50.0871133" data-lon="14.3830117" data-walk="73" data-bike="31" data-transit="28" data-car="12" onclick="showPlace(this)"><span>BASIS Prague</span><span class="poi-walk">73 min</span></div>
+                        <div class="poi-entry" data-lat="50.1295610" data-lon="14.3985133" data-walk="83" data-bike="29" data-transit="32" data-car="13" onclick="showPlace(this)"><span>Riverside School</span><span class="poi-walk">83 min</span></div>
+                        <div class="poi-entry" data-lat="50.1110265" data-lon="14.3412387" data-walk="133" data-bike="46" data-transit="38" data-car="20" onclick="showPlace(this)"><span>International School of Prague</span><span class="poi-walk">133 min</span></div>
+                        <div class="poi-entry" data-lat="50.0055852" data-lon="14.4519095" data-walk="183" data-bike="65" data-transit="45" data-car="24" onclick="showPlace(this)"><span>Prague British Int. School</span><span class="poi-walk">183 min</span></div>
                     </div>
-                </div>
-                
-                <!-- Downtown -->
-                <div class="poi-cat">
-                    <div class="poi-header" onclick="togglePoi(this)"><span>🏛 Downtown Prague</span><span class="poi-toggle">▼</span></div>
-                    <div class="poi-content">
-                        <ul class="poi-list">
-                            <li data-place="Staroměstské náměstí, Praha" onclick="showPlace(this)">Old Town Square</li>
-                            <li data-place="Karlův most, Praha" onclick="showPlace(this)">Charles Bridge</li>
-                            <li data-place="Pražský hrad, Praha" onclick="showPlace(this)">Prague Castle</li>
-                        </ul>
+                    <div class="poi-panel" id="poi-downtown">
+                        <div class="poi-entry" data-lat="50.0887989" data-lon="14.4306385" data-walk="33" data-bike="9" data-transit="21" data-car="6" onclick="showPlace(this)"><span>Republic Square</span><span class="poi-walk">33 min</span></div>
+                        <div class="poi-entry" data-lat="50.0874453" data-lon="14.4209714" data-walk="38" data-bike="11" data-transit="22" data-car="7" onclick="showPlace(this)"><span>Old Town Square</span><span class="poi-walk">38 min</span></div>
+                        <div class="poi-entry" data-lat="50.0815867" data-lon="14.4271699" data-walk="47" data-bike="13" data-transit="25" data-car="8" onclick="showPlace(this)"><span>Wenceslas Square</span><span class="poi-walk">47 min</span></div>
+                        <div class="poi-entry" data-lat="50.0866258" data-lon="14.4101485" data-walk="50" data-bike="14" data-transit="27" data-car="9" onclick="showPlace(this)"><span>Charles Bridge</span><span class="poi-walk">50 min</span></div>
+                        <div class="poi-entry" data-lat="50.0908114" data-lon="14.4005225" data-walk="57" data-bike="16" data-transit="28" data-car="10" onclick="showPlace(this)"><span>Prague Castle</span><span class="poi-walk">57 min</span></div>
+                    </div>
+                    <div class="poi-panel" id="poi-nightlife">
+                        <div class="poi-entry" data-lat="50.1035700" data-lon="14.4466700" data-walk="3" data-bike="2" data-transit="5" data-car="2" onclick="showPlace(this)"><span>The Winery</span><span class="poi-walk">3 min</span></div>
+                        <div class="poi-entry" data-lat="50.1052000" data-lon="14.4478600" data-walk="4" data-bike="2" data-transit="5" data-car="2" onclick="showPlace(this)"><span>Krauzberg</span><span class="poi-walk">4 min</span></div>
+                        <div class="poi-entry" data-lat="50.1033147" data-lon="14.4472380" data-walk="4" data-bike="2" data-transit="6" data-car="2" onclick="showPlace(this)"><span>Sip Sip Hooray</span><span class="poi-walk">4 min</span></div>
+                        <div class="poi-entry" data-lat="50.1082927" data-lon="14.4432281" data-walk="6" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>Cross Club</span><span class="poi-walk">6 min</span></div>
+                        <div class="poi-entry" data-lat="50.0992300" data-lon="14.4450900" data-walk="10" data-bike="3" data-transit="9" data-car="3" onclick="showPlace(this)"><span>SaSaZu klub</span><span class="poi-walk">10 min</span></div>
+                        <div class="poi-entry" data-lat="50.0952200" data-lon="14.4363500" data-walk="20" data-bike="6" data-transit="14" data-car="4" onclick="showPlace(this)"><span>Fuchs 22</span><span class="poi-walk">20 min</span></div>
+                        <div class="poi-entry" data-lat="50.0955968" data-lon="14.4359127" data-walk="20" data-bike="6" data-transit="14" data-car="4" onclick="showPlace(this)"><span>Vila Ň†tvanice</span><span class="poi-walk">20 min</span></div>
+                        <div class="poi-entry" data-lat="50.0999709" data-lon="14.4259027" data-walk="24" data-bike="7" data-transit="15" data-car="5" onclick="showPlace(this)"><span>Cobra</span><span class="poi-walk">24 min</span></div>
+                        <div class="poi-entry" data-lat="50.0907594" data-lon="14.4258932" data-walk="33" data-bike="9" data-transit="21" data-car="6" onclick="showPlace(this)"><span>Roxy Praha</span><span class="poi-walk">33 min</span></div>
+                        <div class="poi-entry" data-lat="50.0964045" data-lon="14.4141409" data-walk="39" data-bike="11" data-transit="24" data-car="7" onclick="showPlace(this)"><span>Informace</span><span class="poi-walk">39 min</span></div>
+                        <div class="poi-entry" data-lat="50.0824067" data-lon="14.4268404" data-walk="46" data-bike="13" data-transit="25" data-car="8" onclick="showPlace(this)"><span>Duplex</span><span class="poi-walk">46 min</span></div>
+                        <div class="poi-entry" data-lat="50.0812690" data-lon="14.4253203" data-walk="49" data-bike="14" data-transit="26" data-car="8" onclick="showPlace(this)"><span>Lucerna Music Bar</span><span class="poi-walk">49 min</span></div>
+                    </div>
+                    <div class="poi-panel" id="poi-services">
+                        <div class="poi-entry" data-lat="50.1044864" data-lon="14.4466502" data-walk="2" data-bike="2" data-transit="5" data-car="2" onclick="showPlace(this)"><span>Pharmacy Osadn√≠</span><span class="poi-walk">2 min</span></div>
+                        <div class="poi-entry" data-lat="50.1030749" data-lon="14.4451157" data-walk="3" data-bike="2" data-transit="5" data-car="2" onclick="showPlace(this)"><span>Pharmacy Dńõlnick√°</span><span class="poi-walk">3 min</span></div>
+                        <div class="poi-entry" data-lat="50.1007753" data-lon="14.4453827" data-walk="7" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>Icon Barbershop</span><span class="poi-walk">7 min</span></div>
+                        <div class="poi-entry" data-lat="50.1075585" data-lon="14.4496549" data-walk="7" data-bike="2" data-transit="7" data-car="2" onclick="showPlace(this)"><span>Pharmacy Ortenovo sq.</span><span class="poi-walk">7 min</span></div>
+                        <div class="poi-entry" data-lat="50.0997496" data-lon="14.4456586" data-walk="9" data-bike="3" data-transit="8" data-car="3" onclick="showPlace(this)"><span>Pepe's Barbershop</span><span class="poi-walk">9 min</span></div>
+                        <div class="poi-entry" data-lat="50.1018767" data-lon="14.4515185" data-walk="9" data-bike="3" data-transit="8" data-car="3" onclick="showPlace(this)"><span>The Crown Barbershop</span><span class="poi-walk">9 min</span></div>
+                        <div class="poi-entry" data-lat="50.1104589" data-lon="14.4496710" data-walk="12" data-bike="3" data-transit="10" data-car="3" onclick="showPlace(this)"><span>West Wood Barbershop</span><span class="poi-walk">12 min</span></div>
+                        <div class="poi-entry" data-lat="50.0988607" data-lon="14.4328808" data-walk="17" data-bike="5" data-transit="12" data-car="4" onclick="showPlace(this)"><span>Laundry Milady Hor√°kov√©</span><span class="poi-walk">17 min</span></div>
+                        <div class="poi-entry" data-lat="50.0986130" data-lon="14.4248344" data-walk="26" data-bike="7" data-transit="17" data-car="5" onclick="showPlace(this)"><span>Laundry Letn√°</span><span class="poi-walk">26 min</span></div>
                     </div>
                 </div>
             </div>
@@ -629,16 +836,17 @@
             </div>
             <div class="contact-item">
                 <div class="contact-label" data-i18n="c.address">Address</div>
-                <a href="#location">U Průhonu 700/10, Praha 7</a>
+                <a href="#location">U PrŇĮhonu 700/10, Praha 7</a>
             </div>
         </div>
     </section>
 
     <footer>
-        <div>© 2026 Art Apartment · Astrid Garden, Prague 7</div>
+        <div>¬© 2026 Art Apartment ¬∑ Astrid Garden, Prague 7</div>
         <div><a href="#">Privacy Policy</a><a href="#">Instagram</a></div>
     </footer>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         const TRANSLATIONS = {
             en: {
@@ -646,14 +854,23 @@
                 "hero.tag": "ART APARTMENT PRAGUE 7", "hero.title": "Where <em>art</em> meets home",
                 "hero.claim": "Privacy. Art. Your new temporary home in Prague.", "hero.cta": "Book a Viewing",
                 "concept.label": "Unique Concept", "concept.title": "Art Apartment <em>Experience</em>",
-                "concept.desc": "The apartment features original paintings and lithographs by top local artists. During your stay, form a connection – and purchase your favorite as a memento.",
+                "concept.desc": "The apartment features original paintings and lithographs by top local artists. During your stay, form a connection ‚Äď and purchase your favorite as a memento.",
                 "f1.title": "Curated Collection", "f1.desc": "Original works by renowned Prague artists, carefully selected for this space",
                 "f2.title": "Live with Art", "f2.desc": "Form a personal connection with the works that surround you daily",
                 "f3.title": "Take Home a Memory", "f3.desc": "Purchase a piece as a souvenir. We arrange international shipping",
                 "details.label": "Specifications", "details.title": "Apartment in <em>Astrid Garden</em>",
-                "d.layout": "Layout + storage", "d.area": "Floor area", "d.balconies": "Balconies (2×)", "d.entrance": "Entrance D",
+                "d.layout": "Layout + storage", "d.area": "Floor area", "d.balconies": "Balconies (2√ó)", "d.entrance": "Entrance D",
+                "parking.title": "Underground Parking", "parking.sub": "Available at extra cost",
+                "parking.desc": "Secure parking space in the residential underground garage. Save on parking fees and enjoy peace of mind with a designated spot for your vehicle.",
+                "workshop.title": "Shared Workshop & Bicycle Storage", "workshop.sub": "Building amenity ¬∑ Included",
+                "workshop.desc": "The building's underground facilities include a shared workshop with essential tools and a secure, lockable bicycle storage room ‚ÄĒ perfect support for an active lifestyle in the heart of Prague.",
+                "equip.label": "Included Equipment",
+                "eq.fridge": "American fridge with ice maker", "eq.steam": "Steam oven", "eq.micro": "Microwave oven",
+                "eq.coffee": "Coffee machine", "eq.wash": "Washer-dryer", "eq.tv": "Smart TV + Soundbar",
+                "eq.vinyl": "Turntable", "eq.bike": "Design e-bike",
                 "gallery.label": "Photo Gallery", "gallery.title": "Explore the <em>Apartment</em>",
                 "map.title": "Strategic <em>Location</em>", "map.desc": "Perfect balance between cultural life and accessibility. International schools nearby. Rich art scene and riverside promenades.",
+                "map.btn.map": "Map", "map.btn.photo": "Photo", "map.btn.simple": "Simple",
                 "contact.label": "Information & Booking", "contact.title": "Contact <em>Us</em>",
                 "contact.desc": "For more information about mid-term rentals, artwork prices, or to book a viewing.",
                 "c.phone": "Phone", "c.address": "Address"
@@ -661,35 +878,53 @@
             de: {
                 "nav.concept": "Konzept", "nav.gallery": "Galerie", "nav.location": "Lage", "nav.contact": "Kontakt",
                 "hero.tag": "ART APARTMENT PRAG 7", "hero.title": "Wo <em>Kunst</em> auf Zuhause trifft",
-                "hero.claim": "Privatsphäre. Kunst. Ihr neues temporäres Zuhause in Prag.", "hero.cta": "Besichtigung buchen",
+                "hero.claim": "Privatsph√§re. Kunst. Ihr neues tempor√§res Zuhause in Prag.", "hero.cta": "Besichtigung buchen",
                 "concept.label": "Einzigartiges Konzept", "concept.title": "Art Apartment <em>Erlebnis</em>",
-                "concept.desc": "Die Wohnung zeigt originale Gemälde und Lithografien von Top-Künstlern. Während Ihres Aufenthalts können Sie Ihr Lieblingsstück kaufen.",
-                "f1.title": "Kuratierte Sammlung", "f1.desc": "Originalwerke renommierter Prager Künstler, sorgfältig für diesen Raum ausgewählt",
-                "f2.title": "Leben mit Kunst", "f2.desc": "Entwickeln Sie eine persönliche Verbindung zu den Werken, die Sie täglich umgeben",
-                "f3.title": "Nehmen Sie eine Erinnerung mit", "f3.desc": "Kaufen Sie ein Stück als Souvenir. Wir arrangieren den internationalen Versand",
+                "concept.desc": "Die Wohnung zeigt originale Gem√§lde und Lithografien von Top-K√ľnstlern. W√§hrend Ihres Aufenthalts k√∂nnen Sie Ihr Lieblingsst√ľck kaufen.",
+                "f1.title": "Kuratierte Sammlung", "f1.desc": "Originalwerke renommierter Prager K√ľnstler, sorgf√§ltig f√ľr diesen Raum ausgew√§hlt",
+                "f2.title": "Leben mit Kunst", "f2.desc": "Entwickeln Sie eine pers√∂nliche Verbindung zu den Werken, die Sie t√§glich umgeben",
+                "f3.title": "Nehmen Sie eine Erinnerung mit", "f3.desc": "Kaufen Sie ein St√ľck als Souvenir. Wir arrangieren den internationalen Versand",
                 "details.label": "Spezifikationen", "details.title": "Wohnung im <em>Astrid Garden</em>",
-                "d.layout": "Grundriss + Abstellraum", "d.area": "Wohnfläche", "d.balconies": "Balkone (2×)", "d.entrance": "Eingang D",
+                "d.layout": "Grundriss + Abstellraum", "d.area": "Wohnfl√§che", "d.balconies": "Balkone (2√ó)", "d.entrance": "Eingang D",
+                "parking.title": "Tiefgaragenstellplatz", "parking.sub": "Gegen Aufpreis verf√ľgbar",
+                "parking.desc": "Sicherer Stellplatz in der Tiefgarage des Wohnkomplexes. Sparen Sie Parkgeb√ľhren und genie√üen Sie die Sicherheit eines festen Parkplatzes f√ľr Ihr Fahrzeug.",
+                "workshop.title": "Gemeinschaftswerkstatt & Fahrradkeller", "workshop.sub": "Geb√§udeausstattung ¬∑ Inklusive",
+                "workshop.desc": "Im Untergeschoss des Geb√§udes befinden sich eine Gemeinschaftswerkstatt mit Grundwerkzeug und ein abschlie√übarer Fahrradkeller ‚ÄĒ ideale Unterst√ľtzung f√ľr einen aktiven Alltag im Herzen Prags.",
+                "equip.label": "Ausstattung",
+                "eq.fridge": "Amerikanischer K√ľhlschrank mit Eisw√ľrfelbereiter", "eq.steam": "Dampfgarer", "eq.micro": "Mikrowelle",
+                "eq.coffee": "Kaffeemaschine", "eq.wash": "Waschtrockner", "eq.tv": "Smart TV + Soundbar",
+                "eq.vinyl": "Plattenspieler", "eq.bike": "Design-E-Bike",
                 "gallery.label": "Fotogalerie", "gallery.title": "Entdecken Sie die <em>Wohnung</em>",
-                "map.title": "Strategische <em>Lage</em>", "map.desc": "Perfekte Balance zwischen Kulturleben und Erreichbarkeit. Internationale Schulen in der Nähe. Reiche Kunstszene und Uferpromenaden.",
+                "map.title": "Strategische <em>Lage</em>", "map.desc": "Perfekte Balance zwischen Kulturleben und Erreichbarkeit. Internationale Schulen in der N√§he. Reiche Kunstszene und Uferpromenaden.",
+                "map.btn.map": "Karte", "map.btn.photo": "Foto", "map.btn.simple": "Einfach",
                 "contact.label": "Information & Buchung", "contact.title": "Kontaktieren Sie <em>uns</em>",
-                "contact.desc": "Für weitere Informationen zu mittelfristigen Vermietungen, Kunstpreisen oder zur Buchung einer Besichtigung.",
+                "contact.desc": "F√ľr weitere Informationen zu mittelfristigen Vermietungen, Kunstpreisen oder zur Buchung einer Besichtigung.",
                 "c.phone": "Telefon", "c.address": "Adresse"
             },
             cs: {
                 "nav.concept": "Koncept", "nav.gallery": "Galerie", "nav.location": "Lokalita", "nav.contact": "Kontakt",
-                "hero.tag": "ART APARTMENT PRAHA 7", "hero.title": "Kde <em>umění</em> potkává domov",
-                "hero.claim": "Soukromí. Umění. Váš nový přechodný domov v Praze.", "hero.cta": "Rezervovat prohlídku",
-                "concept.label": "Unikátní koncept", "concept.title": "Art Apartment <em>Experience</em>",
-                "concept.desc": "Apartmán nabízí originální obrazy a litografie od špičkových českých umělců. Během pobytu si vytvořte osobní vztah – a oblíbené dílo si můžete zakoupit.",
-                "f1.title": "Kurátorská kolekce", "f1.desc": "Originální díla renomovaných pražských umělců, pečlivě vybraná pro tento prostor",
-                "f2.title": "Žijte s uměním", "f2.desc": "Vytvořte si osobní vztah k dílům, která vás denně obklopují",
-                "f3.title": "Odvezte si vzpomínku", "f3.desc": "Zakupte si dílo jako suvenýr. Zajistíme mezinárodní dopravu",
-                "details.label": "Specifikace", "details.title": "Apartmán v <em>Astrid Garden</em>",
-                "d.layout": "Dispozice + sklep", "d.area": "Podlahová plocha", "d.balconies": "Balkony (2×)", "d.entrance": "Vchod D",
-                "gallery.label": "Fotogalerie", "gallery.title": "Prohlédněte si <em>apartmán</em>",
-                "map.title": "Strategická <em>poloha</em>", "map.desc": "Dokonalá rovnováha mezi kulturním životem a dostupností. Mezinárodní školy v okolí. Bohatá umělecká scéna a promenády u řeky.",
-                "contact.label": "Informace a rezervace", "contact.title": "Kontaktujte <em>nás</em>",
-                "contact.desc": "Pro více informací o střednědobých pronájmech, cenách uměleckých děl nebo rezervaci prohlídky.",
+                "hero.tag": "ART APARTMENT PRAHA 7", "hero.title": "Kde <em>umńõn√≠</em> potk√°v√° domov",
+                "hero.claim": "Soukrom√≠. Umńõn√≠. V√°Ň° nov√Ĺ pŇôechodn√Ĺ domov v Praze.", "hero.cta": "Rezervovat prohl√≠dku",
+                "concept.label": "Unik√°tn√≠ koncept", "concept.title": "Art Apartment <em>Experience</em>",
+                "concept.desc": "Apartm√°n nab√≠z√≠ origin√°ln√≠ obrazy a litografie od Ň°pińćkov√Ĺch ńćesk√Ĺch umńõlcŇĮ. Bńõhem pobytu si vytvoŇôte osobn√≠ vztah ‚Äď a obl√≠ben√© d√≠lo si mŇĮŇĺete zakoupit.",
+                "f1.title": "Kur√°torsk√° kolekce", "f1.desc": "Origin√°ln√≠ d√≠la renomovan√Ĺch praŇĺsk√Ĺch umńõlcŇĮ, peńćlivńõ vybran√° pro tento prostor",
+                "f2.title": "ŇĹijte s umńõn√≠m", "f2.desc": "VytvoŇôte si osobn√≠ vztah k d√≠lŇĮm, kter√° v√°s dennńõ obklopuj√≠",
+                "f3.title": "Odvezte si vzpom√≠nku", "f3.desc": "Zakupte si d√≠lo jako suven√Ĺr. Zajist√≠me mezin√°rodn√≠ dopravu",
+                "details.label": "Specifikace", "details.title": "Apartm√°n v <em>Astrid Garden</em>",
+                "d.layout": "Dispozice + sklep", "d.area": "Podlahov√° plocha", "d.balconies": "Balkony (2√ó)", "d.entrance": "Vchod D",
+                "parking.title": "Parkovac√≠ m√≠sto v podzemn√≠ gar√°Ňĺi", "parking.sub": "Za pŇô√≠platek",
+                "parking.desc": "D√≠ky parkovac√≠mu m√≠stu z√≠sk√°te bezpeńćn√© m√≠sto pro parkov√°n√≠ vaŇ°eho vozidla v rezidenńćn√≠ z√≥nńõ a uŇ°etŇô√≠te za parkovac√≠ poplatky.",
+                "workshop.title": "Sd√≠len√° d√≠lna & sklad kol", "workshop.sub": "Vybaven√≠ objektu ¬∑ V cenńõ",
+                "workshop.desc": "V suter√©nn√≠ch prostor√°ch objektu jsou k dispozici sd√≠len√° d√≠lna se z√°kladn√≠m n√°Ňôad√≠m a uzamykateln√Ĺ sklad j√≠zdn√≠ch kol ‚ÄĒ ide√°ln√≠ z√°zem√≠ pro aktivn√≠ Ňĺivot v srdci Prahy.",
+                "equip.label": "Vybaven√≠ apartm√°nu",
+                "eq.fridge": "Americk√° lednice s v√Ĺrobn√≠kem ledu", "eq.steam": "Parn√≠ trouba", "eq.micro": "Mikrovlnn√° trouba",
+                "eq.coffee": "K√°vovar", "eq.wash": "Prańćka se suŇ°ińćkou", "eq.tv": "Chytr√° televize + Soundbar",
+                "eq.vinyl": "Gramofon", "eq.bike": "Designov√© elektrokolo",
+                "gallery.label": "Fotogalerie", "gallery.title": "Prohl√©dnńõte si <em>apartm√°n</em>",
+                "map.title": "Strategick√° <em>poloha</em>", "map.desc": "Dokonal√° rovnov√°ha mezi kulturn√≠m Ňĺivotem a dostupnost√≠. Mezin√°rodn√≠ Ň°koly v okol√≠. Bohat√° umńõleck√° sc√©na a promen√°dy u Ňôeky.",
+                "map.btn.map": "Mapa", "map.btn.photo": "Foto", "map.btn.simple": "Jednoduch√©",
+                "contact.label": "Informace a rezervace", "contact.title": "Kontaktujte <em>n√°s</em>",
+                "contact.desc": "Pro v√≠ce informac√≠ o stŇôednńõdob√Ĺch pron√°jmech, cen√°ch umńõleck√Ĺch dńõl nebo rezervaci prohl√≠dky.",
                 "c.phone": "Telefon", "c.address": "Adresa"
             }
         };
@@ -714,18 +949,296 @@
             btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
         });
 
-        function showPlace(element) {
-            const place = element.getAttribute('data-place');
-            document.querySelectorAll('.poi-list li').forEach(li => li.classList.remove('active'));
-            element.classList.add('active');
-            document.getElementById('googleMap').src = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(place)}&zoom=16`;
+        const APT_LON = 14.44476;
+        const APT_LAT = 50.10488;
+        let currentMode = 'walk';
+
+        // Leaflet map setup
+        const lmap = L.map('locationMap', { zoomControl: true }).setView([APT_LAT, APT_LON], 15);
+        const tileLayers = {
+            map:    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }),
+            photo:  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19 }),
+            simple: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 })
+        };
+        let activeBaseLayer = tileLayers.simple;
+        activeBaseLayer.addTo(lmap);
+        function switchBaseMap(type, btn) {
+            lmap.removeLayer(activeBaseLayer);
+            activeBaseLayer = tileLayers[type];
+            activeBaseLayer.addTo(lmap);
+            document.querySelectorAll('.map-type-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('locationMap').classList.toggle('photo-mode', type === 'photo');
+        }
+        const aptIcon = L.divIcon({ className: 'apt-marker', html: '<div></div>', iconAnchor: [7, 7] });
+        L.marker([APT_LAT, APT_LON], { icon: aptIcon }).addTo(lmap);
+        const poiIcon = L.divIcon({ className: 'poi-marker', html: '<div></div>', iconAnchor: [7, 7] });
+
+        let poiMarker = null;
+        let routeLayers = [];
+        let routeSeq = 0;
+
+        const OSRM_BASE = {
+            walk: 'https://routing.openstreetmap.de/routed-foot/route/v1/driving',
+            bike: 'https://routing.openstreetmap.de/routed-bike/route/v1/driving',
+            car:  'https://routing.openstreetmap.de/routed-car/route/v1/driving'
+        };
+
+        function clearRoute() {
+            routeLayers.forEach(l => lmap.removeLayer(l));
+            routeLayers = [];
+            if (poiMarker) { lmap.removeLayer(poiMarker); poiMarker = null; }
         }
 
-        function togglePoi(header) {
-            const currentCat = header.parentElement;
-            const isOpen = currentCat.classList.contains('open');
-            document.querySelectorAll('.poi-cat').forEach(cat => cat.classList.remove('open'));
-            if (!isOpen) currentCat.classList.add('open');
+        function decodePolyline(str) {
+            let idx = 0, lat = 0, lng = 0, coords = [];
+            while (idx < str.length) {
+                let b, shift = 0, r = 0;
+                do { b = str.charCodeAt(idx++) - 63; r |= (b & 0x1f) << shift; shift += 5; } while (b >= 32);
+                lat += (r & 1) ? ~(r >> 1) : (r >> 1);
+                shift = 0; r = 0;
+                do { b = str.charCodeAt(idx++) - 63; r |= (b & 0x1f) << shift; shift += 5; } while (b >= 32);
+                lng += (r & 1) ? ~(r >> 1) : (r >> 1);
+                coords.push([lat / 1e7, lng / 1e7]);
+            }
+            return coords;
+        }
+
+        function legColor(leg) {
+            if (leg.mode === 'WALK') return null;
+            const c = leg.routeColor;
+            if (c && c !== '000000' && c !== 'ffffff') return '#' + c;
+            switch (leg.mode) {
+                case 'SUBWAY': return '#1a73e8';
+                case 'TRAM':   return '#c8102e';
+                case 'BUS':    return '#f57c00';
+                default:       return '#555';
+            }
+        }
+
+        function showPanel(html) {
+            const p = document.getElementById('routeInfo');
+            p.innerHTML = '<div class="route-info-inner">' + html + '</div>';
+            p.classList.add('visible');
+        }
+
+        function hidePanel() {
+            const p = document.getElementById('routeInfo');
+            p.classList.remove('visible');
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.poi-mode').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+            document.querySelectorAll('.poi-entry').forEach(entry => {
+                const el = entry.querySelector('.poi-walk');
+                if (el && entry.dataset[mode]) el.textContent = entry.dataset[mode] + ' min';
+            });
+            const activeEntry = document.querySelector('.poi-entry.active');
+            if (activeEntry) showPlace(activeEntry);
+        }
+
+        async function showPlace(element) {
+            document.querySelectorAll('.poi-entry').forEach(e => e.classList.remove('active'));
+            element.classList.add('active');
+            const lat = parseFloat(element.dataset.lat);
+            const lon = parseFloat(element.dataset.lon);
+
+            // Auto-switch transport mode based on walk time
+            const walkMin = parseInt(element.dataset.walk) || 0;
+            const activeTab = document.querySelector('.poi-tab.active')?.getAttribute('onclick')?.match(/'([^']+)'\)/)?.[1];
+            if (activeTab !== 'film') {
+                if (walkMin > 30 && currentMode === 'walk') setMode('transit');
+                else if (walkMin <= 30 && currentMode === 'transit') setMode('walk');
+            }
+
+            clearRoute();
+            hidePanel();
+            poiMarker = L.marker([lat, lon], { icon: poiIcon }).addTo(lmap);
+            const poiName = element.querySelector('span').textContent;
+            const gmUrl = 'https://www.google.com/maps/search/?api=1&query=' + lat + ',' + lon;
+            const mapyCzUrl = 'https://en.mapy.cz/zakladni?x=' + lon + '&y=' + lat + '&z=17';
+            const pid = 'pp' + Date.now();
+            const initials = poiName.split(' ').map(w => w[0]).filter(Boolean).slice(0, 2).join('').toUpperCase();
+            poiMarker.bindPopup(
+                '<div class="poi-rich-popup">' +
+                '<div class="poi-popup-photo" id="' + pid + '-ph"><div class="poi-popup-initials">' + initials + '</div></div>' +
+                '<div class="poi-popup-body">' +
+                '<strong class="poi-popup-name">' + poiName + '</strong>' +
+                '<div class="poi-popup-info" id="' + pid + '-info">‚Ź≥</div>' +
+                '<div class="poi-popup-actions">' +
+                '<a class="gm" href="' + gmUrl + '" target="_blank">Google Maps ‚Üó</a>' +
+                '<a class="mc" href="' + mapyCzUrl + '" target="_blank">Mapy.cz ‚Üó</a>' +
+                '</div></div></div>',
+                { maxWidth: 320, className: 'poi-popup-wrapper', autoPan: true, autoPanPadding: [20, 80] }
+            ).openPopup();
+            (async () => {
+                try {
+                    await new Promise(res => setTimeout(res, 1200));
+                    const q = '[out:json][timeout:10];(node(around:60,' + lat + ',' + lon + ')["name"];way(around:60,' + lat + ',' + lon + ')["name"];);out body;';
+                    const opts = { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: 'data=' + encodeURIComponent(q) };
+                    const mirrors = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
+                    let r, d;
+                    for (const url of mirrors) {
+                        try { r = await fetch(url, opts); d = await r.json(); if (d.elements) break; } catch(e) { d = null; }
+                    }
+                    if (!d || !d.elements) throw new Error('no data');
+                    const els = (d.elements || []).filter(e => e.tags && e.tags.name);
+                    const nm = poiName.toLowerCase().replace(/['']/g, '');
+                    const nmWords = nm.split(/\s+/);
+                    const score = (osmName) => {
+                        const on = osmName.toLowerCase().replace(/['']/g, '');
+                        if (on === nm) return 100;
+                        if (on.includes(nm) || nm.includes(on)) return 80;
+                        const matched = nmWords.filter(w => w.length > 2 && on.includes(w)).length;
+                        return matched * 20;
+                    };
+                    const scored = els.map(e => ({ e, s: score(e.tags.name) })).filter(x => x.s > 0).sort((a,b) => b.s - a.s);
+                    const best = scored[0]?.e || null;
+                    const tags = best ? best.tags : {};
+                    // Photo ‚ÄĒ try sources in priority order
+                    const phEl = document.getElementById(pid + '-ph');
+                    if (phEl) {
+                        const setPhoto = (src) => { phEl.innerHTML = '<img src="' + src + '" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display=\'none\'">'; };
+                        const imgSrc = tags.image;
+                        const wc = tags.wikimedia_commons;
+                        const wiki = tags.wikipedia;
+                        const siteUrl = tags.website || tags['contact:website'];
+                        if (imgSrc) {
+                            setPhoto(imgSrc);
+                        } else if (wc) {
+                            const fn = wc.replace(/^(File:|Category:)/i, '');
+                            fetch('https://commons.wikimedia.org/w/api.php?action=query&titles=File:' + encodeURIComponent(fn) + '&prop=imageinfo&iiprop=url&iiurlwidth=320&format=json&origin=*')
+                                .then(rr => rr.json()).then(dd => {
+                                    const pg = Object.values(dd.query?.pages || {})[0];
+                                    const thumb = pg?.imageinfo?.[0]?.thumburl;
+                                    if (thumb) setPhoto(thumb);
+                                }).catch(() => {});
+                        } else if (wiki) {
+                            const parts = wiki.split(':');
+                            const wLang = parts.length > 1 ? parts[0] : 'en';
+                            const wTitle = parts.length > 1 ? parts.slice(1).join(':') : parts[0];
+                            fetch('https://' + wLang + '.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(wTitle))
+                                .then(rr => rr.json()).then(dd => {
+                                    if (dd.thumbnail?.source) setPhoto(dd.thumbnail.source);
+                                }).catch(() => {});
+                        } else if (siteUrl) {
+                            fetch('https://api.microlink.io?url=' + encodeURIComponent(siteUrl))
+                                .then(rr => rr.json()).then(dd => {
+                                    const img = dd.data?.image?.url || dd.data?.logo?.url;
+                                    if (img) setPhoto(img);
+                                }).catch(() => {});
+                        }
+                    }
+                    // Info lines
+                    const infoEl = document.getElementById(pid + '-info');
+                    if (infoEl) {
+                        const lines = [];
+                        if (tags.cuisine) lines.push('<span class="poi-popup-tag">' + tags.cuisine.replace(/;/g, ' ¬∑ ') + '</span>');
+                        if (tags.opening_hours) lines.push('ūüēź ' + tags.opening_hours);
+                        if (tags.description) lines.push('ūüďĚ ' + tags.description);
+                        if (tags.phone || tags['contact:phone']) lines.push('ūüďě ' + (tags.phone || tags['contact:phone']));
+                        const web = tags.website || tags['contact:website'];
+                        if (web) lines.push('ūüĆź <a href="' + web + '" target="_blank">' + web.replace(/^https?:\/\//, '').split('/')[0] + '</a>');
+                        if (tags['addr:street']) lines.push('ūüďć ' + tags['addr:street'] + (tags['addr:housenumber'] ? ' ' + tags['addr:housenumber'] : ''));
+                        if (tags.outdoor_seating === 'yes') lines.push('ūüĆŅ Outdoor seating');
+                        if (tags.wheelchair === 'yes') lines.push('‚ôŅ Wheelchair accessible');
+                        infoEl.innerHTML = lines.length ? lines.join('<br>') : '<span style="color:#aaa">No info in OpenStreetMap</span>';
+                    }
+                } catch(e) {
+                    const infoEl = document.getElementById(pid + '-info');
+                    if (infoEl) infoEl.innerHTML = '<span style="color:#aaa">‚ÄĒ</span>';
+                }
+            })();
+            const seq = ++routeSeq;
+
+            if (currentMode === 'transit') {
+                lmap.fitBounds([[APT_LAT, APT_LON], [lat, lon]], { padding: [50, 50] });
+                try {
+                    const resp = await fetch(`https://api.transitous.org/api/v1/plan?fromPlace=${APT_LAT},${APT_LON}&toPlace=${lat},${lon}&mode=TRANSIT,WALK&numItineraries=1`);
+                    const data = await resp.json();
+                    if (seq !== routeSeq) return;
+                    const itin = (data.itineraries || data.plan?.itineraries)?.[0];
+                    if (!itin) { showPanel('<div class="route-summary">No transit route found.</div>'); return; }
+
+                    const allCoords = [];
+                    itin.legs.forEach(leg => {
+                        if (!leg.legGeometry?.points) return;
+                        const coords = decodePolyline(leg.legGeometry.points);
+                        allCoords.push(...coords);
+                        const color = legColor(leg);
+                        const layer = L.polyline(coords, {
+                            color: leg.mode === 'WALK' ? '#e63030' : (color || '#555'),
+                            weight: leg.mode === 'WALK' ? 3 : 5,
+                            opacity: leg.mode === 'WALK' ? 0.85 : 0.92,
+                            dashArray: leg.mode === 'WALK' ? '8,7' : null,
+                            lineJoin: 'round'
+                        }).addTo(lmap);
+                        routeLayers.push(layer);
+                    });
+                    if (allCoords.length) lmap.fitBounds(L.latLngBounds(allCoords), { padding: [50, 50] });
+
+                    const totalMin = Math.round(itin.duration / 60);
+                    element.dataset.transit = totalMin;
+                    const twEl = element.querySelector('.poi-walk');
+                    if (twEl) twEl.textContent = totalMin + ' min';
+                    let html = '<div class="transit-timeline">';
+                    itin.legs.forEach((leg, i) => {
+                        const dur = Math.round(leg.duration / 60);
+                        if (leg.mode === 'WALK' && dur < 1) return;
+                        const color = legColor(leg);
+                        const badge = leg.mode === 'WALK' ? '~' : (leg.displayName || leg.routeShortName || leg.mode.slice(0,1));
+                        const badgeSt = color ? `background:${color};color:#fff` : 'background:#ddd;color:#555';
+                        const modeName = leg.mode === 'WALK' ? `Walk ${dur} min`
+                            : `<strong>${leg.mode === 'SUBWAY' ? 'Metro' : leg.mode === 'TRAM' ? 'Tram' : leg.mode === 'BUS' ? 'Bus' : 'Train'} ${badge}</strong> ¬∑ ${dur} min`;
+                        const dest = leg.to.name !== 'END' ? `<span class="tleg-stop">‚Üí ${leg.to.name}</span>` : '';
+                        html += `<div class="tleg"><span class="tleg-badge" style="${badgeSt}">${badge}</span><span class="tleg-name">${modeName}${dest}</span></div>`;
+                    });
+                    html += `<div class="tleg-total">Total: <strong>${totalMin} min</strong></div></div>`;
+                    showPanel(html);
+                } catch(e) {
+                    if (seq === routeSeq) showPanel('<div class="route-summary">Transit routing unavailable.</div>');
+                }
+                return;
+            }
+
+            try {
+                const resp = await fetch(`${OSRM_BASE[currentMode]}/${APT_LON},${APT_LAT};${lon},${lat}?geometries=geojson&overview=full`);
+                const data = await resp.json();
+                if (seq !== routeSeq) return;
+                if (data.routes?.[0]) {
+                    const r = data.routes[0];
+                    const layer = L.geoJSON(r.geometry, {
+                        style: { color: '#e63030', weight: 5, opacity: 0.9, lineJoin: 'round', lineCap: 'round' }
+                    }).addTo(lmap);
+                    routeLayers.push(layer);
+                    lmap.fitBounds(layer.getBounds(), { padding: [50, 50] });
+                    const dur = Math.round(r.duration / 60);
+                    element.dataset[currentMode] = dur;
+                    const owEl = element.querySelector('.poi-walk');
+                    if (owEl) owEl.textContent = dur + ' min';
+                    const dist = r.distance >= 1000 ? (r.distance / 1000).toFixed(1) + ' km' : Math.round(r.distance) + ' m';
+                    const icons = { walk: 'ūüö∂', bike: 'ūüö≤', car: 'ūüöó' };
+                    showPanel(`<div class="route-summary">${icons[currentMode]} <strong>${dur} min</strong> &middot; ${dist}</div>`);
+                }
+            } catch(e) {
+                if (seq === routeSeq) lmap.fitBounds([[APT_LAT, APT_LON], [lat, lon]], { padding: [50, 50] });
+            }
+        }
+
+        function selectTab(tabEl, cat) {
+            document.querySelectorAll('.poi-tab').forEach(t => t.classList.remove('active'));
+            tabEl.classList.add('active');
+            document.querySelectorAll('.poi-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('poi-' + cat).classList.add('active');
+            if (cat === 'film') {
+                setMode('car');
+            } else {
+                const panel = document.getElementById('poi-' + cat);
+                const entries = panel ? [...panel.querySelectorAll('.poi-entry')] : [];
+                const minWalk = entries.length ? Math.min(...entries.map(e => parseInt(e.dataset.walk) || 999)) : 0;
+                setMode(minWalk > 30 ? 'transit' : 'walk');
+            }
         }
 
         const galleryImages = [
