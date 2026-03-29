@@ -1111,37 +1111,45 @@
             ).openPopup();
             (async () => {
                 try {
-                    await new Promise(res => setTimeout(res, 1200));
-                    const q = '[out:json][timeout:10];(node(around:60,' + lat + ',' + lon + ')["name"];way(around:60,' + lat + ',' + lon + ')["name"];);out body;';
-                    const opts = { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: 'data=' + encodeURIComponent(q) };
-                    const mirrors = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
-                    let r, d;
-                    for (const url of mirrors) {
-                        try { r = await fetch(url, opts); d = await r.json(); if (d.elements) break; } catch(e) { d = null; }
-                    }
-                    if (!d || !d.elements) throw new Error('no data');
-                    const els = (d.elements || []).filter(e => e.tags && e.tags.name);
-                    const nm = poiName.toLowerCase().replace(/['']/g, '');
-                    const nmWords = nm.split(/\s+/);
-                    const score = (osmName) => {
-                        const on = osmName.toLowerCase().replace(/['']/g, '');
-                        if (on === nm) return 100;
-                        if (on.includes(nm) || nm.includes(on)) return 80;
-                        const matched = nmWords.filter(w => w.length > 2 && on.includes(w)).length;
-                        return matched * 20;
-                    };
-                    const scored = els.map(e => ({ e, s: score(e.tags.name) })).filter(x => x.s > 0).sort((a,b) => b.s - a.s);
-                    const best = scored[0]?.e || null;
-                    const tags = best ? best.tags : {};
-                    // If OSM proximity search has no useful info, try Nominatim name search
-                    const hasUseful = tags.opening_hours || tags.phone || tags['contact:phone'] || tags.website || tags['contact:website'] || tags['addr:street'];
-                    if (!hasUseful) {
-                        try {
-                            const nmResp = await fetch('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: poiName + ' Praha', format: 'json', limit: 5, extratags: '1', addressdetails: '1' }));
-                            const nmData = await nmResp.json();
-                            for (const r of nmData) {
+                    const cacheKey = lat + ',' + lon;
+                    if (!window._poiCache) window._poiCache = {};
+                    let tags;
+                    if (window._poiCache[cacheKey]) {
+                        tags = window._poiCache[cacheKey];
+                    } else {
+                        // Fire Overpass and Nominatim in parallel
+                        const overpassP = (async () => {
+                            const q = '[out:json][timeout:8];(node(around:60,' + lat + ',' + lon + ')["name"];way(around:60,' + lat + ',' + lon + ')["name"];);out body;';
+                            const opts = { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: 'data=' + encodeURIComponent(q) };
+                            for (const url of ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter']) {
+                                try { const r = await fetch(url, opts); const d = await r.json(); if (d.elements) return d.elements; } catch(e) {}
+                            }
+                            return [];
+                        })();
+                        const nominatimP = (async () => {
+                            try {
+                                const r = await fetch('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: poiName + ' Praha', format: 'json', limit: 5, extratags: '1', addressdetails: '1' }));
+                                return await r.json();
+                            } catch(e) { return []; }
+                        })();
+                        const [elements, nmData] = await Promise.all([overpassP, nominatimP]);
+                        // Score Overpass results by name
+                        const nm = poiName.toLowerCase().replace(/['']/g, '');
+                        const nmWords = nm.split(/\s+/);
+                        const score = (osmName) => {
+                            const on = osmName.toLowerCase().replace(/['']/g, '');
+                            if (on === nm) return 100;
+                            if (on.includes(nm) || nm.includes(on)) return 80;
+                            return nmWords.filter(w => w.length > 2 && on.includes(w)).length * 20;
+                        };
+                        const scored = (elements || []).filter(e => e.tags?.name).map(e => ({ e, s: score(e.tags.name) })).filter(x => x.s > 0).sort((a,b) => b.s - a.s);
+                        tags = scored[0]?.e ? { ...scored[0].e.tags } : {};
+                        // Merge Nominatim if Overpass lacks useful info
+                        const hasUseful = tags.opening_hours || tags.phone || tags['contact:phone'] || tags.website || tags['contact:website'] || tags['addr:street'];
+                        if (!hasUseful) {
+                            const firstWord = poiName.toLowerCase().split(' ')[0];
+                            for (const r of (nmData || [])) {
                                 const rn = (r.display_name || '').toLowerCase();
-                                const firstWord = poiName.toLowerCase().split(' ')[0];
                                 if (rn.includes(firstWord) && r.extratags) {
                                     Object.assign(tags, r.extratags);
                                     if (r.address?.road && !tags['addr:street']) tags['addr:street'] = r.address.road;
@@ -1149,7 +1157,8 @@
                                     break;
                                 }
                             }
-                        } catch(e) {}
+                        }
+                        window._poiCache[cacheKey] = tags;
                     }
                     // Photo — try sources in priority order
                     const phEl = document.getElementById(pid + '-ph');
