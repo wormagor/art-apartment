@@ -214,14 +214,69 @@
             max-width: 900px;
             margin: 2.5rem auto 0;
         }
-        .detail-item { text-align: center; padding: 1.5rem; background: var(--ivory); transition: transform 0.3s; }
-        .detail-item:hover { transform: translateY(-5px); }
-        .detail-val { font-family: var(--serif); font-size: 2rem; color: var(--bronze); margin-bottom: 0.3rem; }
-        .detail-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
+        .detail-item {
+            text-align: center; padding: 2rem 1.5rem; background: var(--ivory);
+            transition: transform 0.3s; display: flex; flex-direction: column;
+            align-items: center; gap: 0.75rem;
+        }
+        .detail-item:hover { transform: translateY(-4px); }
+        .detail-icon {
+            width: 44px; height: 44px;
+            border: 1.5px solid var(--bronze); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--serif); font-size: 1.1rem;
+            color: var(--bronze); font-weight: 500;
+        }
+        .detail-val { font-family: var(--serif); font-size: 2rem; color: var(--bronze); line-height: 1; }
+        .detail-label { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bronze); }
+
+        .parking-callout {
+            max-width: 900px;
+            margin: 1rem auto 0;
+            background: var(--ivory);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.75rem;
+            transition: transform 0.3s;
+        }
+        .parking-callout:hover { transform: translateY(-4px); }
+        .parking-icon {
+            width: 44px; height: 44px;
+            border: 1.5px solid var(--bronze);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            color: var(--bronze);
+            font-weight: 500;
+        }
+        .parking-body { }
+        .parking-title {
+            font-family: var(--serif);
+            font-size: 1rem;
+            color: var(--obsidian);
+            margin-bottom: 0.15rem;
+        }
+        .parking-sub {
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--bronze);
+            margin-bottom: 0.6rem;
+        }
+        .parking-desc {
+            font-size: 0.8rem;
+            color: var(--charcoal);
+            line-height: 1.6;
+            opacity: 0.85;
+        }
 
         .equip-section {
             max-width: 900px;
-            margin: 2.5rem auto 0;
+            margin: 1rem auto 0;
             padding-top: 2rem;
             border-top: 1px solid rgba(0,0,0,0.08);
         }
@@ -236,7 +291,7 @@
         .equip-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 0.75rem;
+            gap: 1rem;
         }
         .equip-item {
             background: var(--ivory);
@@ -250,7 +305,7 @@
             text-align: center;
             align-items: center;
         }
-        .equip-item:hover { transform: translateY(-3px); }
+        .equip-item:hover { transform: translateY(-4px); }
         .equip-item-brand {
             font-size: 0.6rem;
             letter-spacing: 0.12em;
@@ -445,10 +500,42 @@
             <h2 class="section-title" data-i18n="details.title">Apartment in <em>Astrid Garden</em></h2>
         </div>
         <div class="details-grid">
-            <div class="detail-item"><div class="detail-val">3+kk</div><div class="detail-label" data-i18n="d.layout">Layout + storage</div></div>
-            <div class="detail-item"><div class="detail-val">73.5 m²</div><div class="detail-label" data-i18n="d.area">Floor area</div></div>
-            <div class="detail-item"><div class="detail-val">13.7 m²</div><div class="detail-label" data-i18n="d.balconies">Balconies (2×)</div></div>
-            <div class="detail-item"><div class="detail-val" data-i18n="d.entrance">Entrance D</div><div class="detail-label">Astrid Garden</div></div>
+            <div class="detail-item">
+                <div class="detail-icon">3</div>
+                <div class="detail-val">3+kk</div>
+                <div class="detail-label" data-i18n="d.layout">Layout + storage</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon">m²</div>
+                <div class="detail-val">73.5 m²</div>
+                <div class="detail-label" data-i18n="d.area">Floor area</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon">B</div>
+                <div class="detail-val">13.7 m²</div>
+                <div class="detail-label" data-i18n="d.balconies">Balconies (2×)</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon">D</div>
+                <div class="detail-val" data-i18n="d.entrance">Entrance D</div>
+                <div class="detail-label">Astrid Garden</div>
+            </div>
+        </div>
+        <div class="parking-callout">
+            <div class="parking-icon">P</div>
+            <div class="parking-body">
+                <div class="parking-title" data-i18n="parking.title">Underground Parking</div>
+                <div class="parking-sub" data-i18n="parking.sub">Available at extra cost</div>
+                <div class="parking-desc" data-i18n="parking.desc">Secure parking space in the residential underground garage. Save on parking fees and enjoy peace of mind with a designated spot for your vehicle.</div>
+            </div>
+        </div>
+        <div class="parking-callout">
+            <div class="parking-icon">W</div>
+            <div class="parking-body">
+                <div class="parking-title" data-i18n="workshop.title">Shared Workshop & Bicycle Storage</div>
+                <div class="parking-sub" data-i18n="workshop.sub">Building amenity · Included</div>
+                <div class="parking-desc" data-i18n="workshop.desc">The building's underground facilities include a shared workshop with essential tools and a secure, lockable bicycle storage room — perfect support for an active lifestyle in the heart of Prague.</div>
+            </div>
         </div>
         <div class="equip-section">
             <div class="equip-section-label" data-i18n="equip.label">Included Equipment</div>
@@ -732,6 +819,10 @@
                 "f3.title": "Take Home a Memory", "f3.desc": "Purchase a piece as a souvenir. We arrange international shipping",
                 "details.label": "Specifications", "details.title": "Apartment in <em>Astrid Garden</em>",
                 "d.layout": "Layout + storage", "d.area": "Floor area", "d.balconies": "Balconies (2×)", "d.entrance": "Entrance D",
+                "parking.title": "Underground Parking", "parking.sub": "Available at extra cost",
+                "parking.desc": "Secure parking space in the residential underground garage. Save on parking fees and enjoy peace of mind with a designated spot for your vehicle.",
+                "workshop.title": "Shared Workshop & Bicycle Storage", "workshop.sub": "Building amenity · Included",
+                "workshop.desc": "The building's underground facilities include a shared workshop with essential tools and a secure, lockable bicycle storage room — perfect support for an active lifestyle in the heart of Prague.",
                 "equip.label": "Included Equipment",
                 "eq.fridge": "American fridge with ice maker", "eq.steam": "Steam oven", "eq.micro": "Microwave oven",
                 "eq.coffee": "Coffee machine", "eq.wash": "Washer-dryer", "eq.tv": "Smart TV + Soundbar",
@@ -753,6 +844,10 @@
                 "f3.title": "Nehmen Sie eine Erinnerung mit", "f3.desc": "Kaufen Sie ein Stück als Souvenir. Wir arrangieren den internationalen Versand",
                 "details.label": "Spezifikationen", "details.title": "Wohnung im <em>Astrid Garden</em>",
                 "d.layout": "Grundriss + Abstellraum", "d.area": "Wohnfläche", "d.balconies": "Balkone (2×)", "d.entrance": "Eingang D",
+                "parking.title": "Tiefgaragenstellplatz", "parking.sub": "Gegen Aufpreis verfügbar",
+                "parking.desc": "Sicherer Stellplatz in der Tiefgarage des Wohnkomplexes. Sparen Sie Parkgebühren und genießen Sie die Sicherheit eines festen Parkplatzes für Ihr Fahrzeug.",
+                "workshop.title": "Gemeinschaftswerkstatt & Fahrradkeller", "workshop.sub": "Gebäudeausstattung · Inklusive",
+                "workshop.desc": "Im Untergeschoss des Gebäudes befinden sich eine Gemeinschaftswerkstatt mit Grundwerkzeug und ein abschließbarer Fahrradkeller — ideale Unterstützung für einen aktiven Alltag im Herzen Prags.",
                 "equip.label": "Ausstattung",
                 "eq.fridge": "Amerikanischer Kühlschrank mit Eiswürfelbereiter", "eq.steam": "Dampfgarer", "eq.micro": "Mikrowelle",
                 "eq.coffee": "Kaffeemaschine", "eq.wash": "Waschtrockner", "eq.tv": "Smart TV + Soundbar",
@@ -774,6 +869,10 @@
                 "f3.title": "Odvezte si vzpomínku", "f3.desc": "Zakupte si dílo jako suvenýr. Zajistíme mezinárodní dopravu",
                 "details.label": "Specifikace", "details.title": "Apartmán v <em>Astrid Garden</em>",
                 "d.layout": "Dispozice + sklep", "d.area": "Podlahová plocha", "d.balconies": "Balkony (2×)", "d.entrance": "Vchod D",
+                "parking.title": "Parkovací místo v podzemní garáži", "parking.sub": "Za příplatek",
+                "parking.desc": "Díky parkovacímu místu získáte bezpečné místo pro parkování vašeho vozidla v rezidenční zóně a ušetříte za parkovací poplatky.",
+                "workshop.title": "Sdílená dílna & sklad kol", "workshop.sub": "Vybavení objektu · V ceně",
+                "workshop.desc": "V suterénních prostorách objektu jsou k dispozici sdílená dílna se základním nářadím a uzamykatelný sklad jízdních kol — ideální zázemí pro aktivní život v srdci Prahy.",
                 "equip.label": "Vybavení apartmánu",
                 "eq.fridge": "Americká lednice s výrobníkem ledu", "eq.steam": "Parní trouba", "eq.micro": "Mikrovlnná trouba",
                 "eq.coffee": "Kávovar", "eq.wash": "Pračka se sušičkou", "eq.tv": "Chytrá televize + Soundbar",
