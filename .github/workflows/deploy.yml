@@ -1,0 +1,19 @@
+name: Deploy to FTP
+
+on:
+  push:
+    branches:
+      - section/location
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 389998.w98.wedos.net
+          username: w389998
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /www/
