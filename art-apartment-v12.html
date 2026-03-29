@@ -214,10 +214,21 @@
             max-width: 900px;
             margin: 2.5rem auto 0;
         }
-        .detail-item { text-align: center; padding: 1.5rem; background: var(--ivory); transition: transform 0.3s; }
+        .detail-item {
+            text-align: center; padding: 2rem 1.5rem; background: var(--ivory);
+            transition: transform 0.3s; display: flex; flex-direction: column;
+            align-items: center; gap: 0.75rem;
+        }
         .detail-item:hover { transform: translateY(-4px); }
-        .detail-val { font-family: var(--serif); font-size: 2rem; color: var(--bronze); margin-bottom: 0.3rem; }
-        .detail-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
+        .detail-icon {
+            width: 44px; height: 44px;
+            border: 1.5px solid var(--bronze); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--serif); font-size: 1.1rem;
+            color: var(--bronze); font-weight: 500;
+        }
+        .detail-val { font-family: var(--serif); font-size: 2rem; color: var(--bronze); line-height: 1; }
+        .detail-label { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bronze); }
 
         .parking-callout {
             max-width: 900px;
@@ -489,10 +500,26 @@
             <h2 class="section-title" data-i18n="details.title">Apartment in <em>Astrid Garden</em></h2>
         </div>
         <div class="details-grid">
-            <div class="detail-item"><div class="detail-val">3+kk</div><div class="detail-label" data-i18n="d.layout">Layout + storage</div></div>
-            <div class="detail-item"><div class="detail-val">73.5 m²</div><div class="detail-label" data-i18n="d.area">Floor area</div></div>
-            <div class="detail-item"><div class="detail-val">13.7 m²</div><div class="detail-label" data-i18n="d.balconies">Balconies (2×)</div></div>
-            <div class="detail-item"><div class="detail-val" data-i18n="d.entrance">Entrance D</div><div class="detail-label">Astrid Garden</div></div>
+            <div class="detail-item">
+                <div class="detail-icon">3</div>
+                <div class="detail-val">3+kk</div>
+                <div class="detail-label" data-i18n="d.layout">Layout + storage</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon">m²</div>
+                <div class="detail-val">73.5 m²</div>
+                <div class="detail-label" data-i18n="d.area">Floor area</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon">B</div>
+                <div class="detail-val">13.7 m²</div>
+                <div class="detail-label" data-i18n="d.balconies">Balconies (2×)</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon">D</div>
+                <div class="detail-val" data-i18n="d.entrance">Entrance D</div>
+                <div class="detail-label">Astrid Garden</div>
+            </div>
         </div>
         <div class="parking-callout">
             <div class="parking-icon">P</div>
