@@ -131,6 +131,14 @@
             font-weight: 300;
             max-width: 600px;
         }
+        .hero-sub {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+            font-weight: 300;
+            opacity: 0.85;
+            max-width: 600px;
+        }
         .hero-caption { font-size: 1rem; margin-bottom: 0.3rem; opacity: 0.9; }
         .hero-caption-sub { font-size: 0.85rem; opacity: 0.7; }
         .hero-indicators {
@@ -498,6 +506,7 @@
             <div class="hero-tag" data-i18n="hero.tag">ART APARTMENT PRAGUE 7</div>
             <h1 class="hero-title" data-i18n="hero.title">Where <em>art</em> meets home</h1>
             <p class="hero-claim" data-i18n="hero.claim">Privacy. Art. Your new temporary home in Prague.</p>
+            <p class="hero-sub" data-i18n="hero.sub">Private courtyard for maximum privacy.</p>
             <div class="hero-caption" id="heroCaption">Astrid Garden Courtyard</div>
             <div class="hero-caption-sub" id="heroCaptionSub">Private residence in Prague 7</div>
             <a href="#contact" class="cta-btn" data-i18n="hero.cta">Book a Viewing</a>
@@ -568,19 +577,27 @@
             </div>
         </div>
         <div class="parking-callout">
-            <div class="parking-icon">P</div>
-            <div class="parking-body">
-                <div class="parking-title" data-i18n="parking.title">Underground Parking</div>
-                <div class="parking-sub" data-i18n="parking.sub">Available at extra cost</div>
-                <div class="parking-desc" data-i18n="parking.desc">Secure parking space in the residential underground garage. Save on parking fees and enjoy peace of mind with a designated spot for your vehicle.</div>
-            </div>
-        </div>
-        <div class="parking-callout">
             <div class="parking-icon">W</div>
             <div class="parking-body">
                 <div class="parking-title" data-i18n="workshop.title">Shared Workshop & Bicycle Storage</div>
                 <div class="parking-sub" data-i18n="workshop.sub">Building amenity ¬∑ Included</div>
                 <div class="parking-desc" data-i18n="workshop.desc">The building's underground facilities include a shared workshop with essential tools and a secure, lockable bicycle storage room ‚ÄĒ perfect support for an active lifestyle in the heart of Prague.</div>
+            </div>
+        </div>
+        <div class="parking-callout">
+            <div class="parking-icon">SK</div>
+            <div class="parking-body">
+                <div class="parking-title" data-i18n="storage.title">5.8 m¬≤ Private Storage</div>
+                <div class="parking-sub" data-i18n="storage.sub">Cellar near parking space ¬∑ Included</div>
+                <div class="parking-desc" data-i18n="storage.desc">A dedicated storage cellar located in the underground level next to the parking space ‚ÄĒ ideal for luggage, sports equipment, or any belongings you don't need close at hand every day.</div>
+            </div>
+        </div>
+        <div class="parking-callout">
+            <div class="parking-icon">P</div>
+            <div class="parking-body">
+                <div class="parking-title" data-i18n="parking.title">Underground Parking</div>
+                <div class="parking-sub" data-i18n="parking.sub">Available at extra cost</div>
+                <div class="parking-desc" data-i18n="parking.desc">Secure parking space in the residential underground garage. Save on parking fees and enjoy peace of mind with a designated spot for your vehicle.</div>
             </div>
         </div>
         <div class="equip-section">
@@ -654,7 +671,8 @@
             <h2 class="section-title" data-i18n="map.title">Strategic <em>Location</em></h2>
         </div>
         <p class="map-intro" data-i18n="map.desc">Perfect balance between cultural life and accessibility. International schools nearby. Rich art scene and riverside promenades.</p>
-        
+        <p class="map-intro" data-i18n="map.desc2">A fast-evolving, tranquil residential neighbourhood ‚ÄĒ 14 minutes to the city centre and to Prague Studios & Jordan Studios.</p>
+
         <div class="map-container">
             <div class="map-frame">
                 <div id="locationMap"></div>
@@ -852,7 +870,7 @@
             en: {
                 "nav.concept": "Concept", "nav.gallery": "Gallery", "nav.location": "Location", "nav.contact": "Contact",
                 "hero.tag": "ART APARTMENT PRAGUE 7", "hero.title": "Where <em>art</em> meets home",
-                "hero.claim": "Privacy. Art. Your new temporary home in Prague.", "hero.cta": "Book a Viewing",
+                "hero.claim": "Privacy. Art. Your new temporary home in Prague.", "hero.sub": "A secluded inner courtyard ‚ÄĒ your private sanctuary in the city.", "hero.cta": "Book a Viewing",
                 "concept.label": "Unique Concept", "concept.title": "Art Apartment <em>Experience</em>",
                 "concept.desc": "The apartment features original paintings and lithographs by top local artists. During your stay, form a connection ‚Äď and purchase your favorite as a memento.",
                 "f1.title": "Curated Collection", "f1.desc": "Original works by renowned Prague artists, carefully selected for this space",
@@ -862,14 +880,16 @@
                 "d.layout": "Layout + storage", "d.area": "Floor area", "d.balconies": "Balconies (2√ó)", "d.entrance": "Entrance D",
                 "parking.title": "Underground Parking", "parking.sub": "Available at extra cost",
                 "parking.desc": "Secure parking space in the residential underground garage. Save on parking fees and enjoy peace of mind with a designated spot for your vehicle.",
-                "workshop.title": "Shared Workshop & Bicycle Storage", "workshop.sub": "Building amenity ¬∑ Included",
+                "workshop.title": "Shared Workshop & Bicycle Storage", "workshop.sub": "Building amenity ¬∑ Included", "workshop.val": "Workshop + Bikes",
                 "workshop.desc": "The building's underground facilities include a shared workshop with essential tools and a secure, lockable bicycle storage room ‚ÄĒ perfect support for an active lifestyle in the heart of Prague.",
+                "storage.title": "5.8 m¬≤ Private Storage", "storage.sub": "Cellar near parking space ¬∑ Included", "storage.label": "Private storage cellar",
+                "storage.desc": "A dedicated storage cellar located in the underground level next to the parking space ‚ÄĒ ideal for luggage, sports equipment, or any belongings you don't need close at hand every day.",
                 "equip.label": "Included Equipment",
                 "eq.fridge": "American fridge with ice maker", "eq.steam": "Steam oven", "eq.micro": "Microwave oven",
                 "eq.coffee": "Coffee machine", "eq.wash": "Washer-dryer", "eq.tv": "Smart TV + Soundbar",
                 "eq.vinyl": "Turntable", "eq.bike": "Design e-bike",
                 "gallery.label": "Photo Gallery", "gallery.title": "Explore the <em>Apartment</em>",
-                "map.title": "Strategic <em>Location</em>", "map.desc": "Perfect balance between cultural life and accessibility. International schools nearby. Rich art scene and riverside promenades.",
+                "map.title": "Strategic <em>Location</em>", "map.desc": "Perfect balance between cultural life and accessibility. International schools nearby. Rich art scene and riverside promenades.", "map.desc2": "A fast-evolving, tranquil residential neighbourhood ‚ÄĒ 14 minutes to the city centre and to Prague Studios & Jordan Studios.",
                 "map.btn.map": "Map", "map.btn.photo": "Photo", "map.btn.simple": "Simple",
                 "contact.label": "Information & Booking", "contact.title": "Contact <em>Us</em>",
                 "contact.desc": "For more information about mid-term rentals, artwork prices, or to book a viewing.",
@@ -878,7 +898,7 @@
             de: {
                 "nav.concept": "Konzept", "nav.gallery": "Galerie", "nav.location": "Lage", "nav.contact": "Kontakt",
                 "hero.tag": "ART APARTMENT PRAG 7", "hero.title": "Wo <em>Kunst</em> auf Zuhause trifft",
-                "hero.claim": "Privatsph√§re. Kunst. Ihr neues tempor√§res Zuhause in Prag.", "hero.cta": "Besichtigung buchen",
+                "hero.claim": "Privatsph√§re. Kunst. Ihr neues tempor√§res Zuhause in Prag.", "hero.sub": "Ein privater Innenhof ‚ÄĒ Ihr stilles Refugium mitten in der Stadt.", "hero.cta": "Besichtigung buchen",
                 "concept.label": "Einzigartiges Konzept", "concept.title": "Art Apartment <em>Erlebnis</em>",
                 "concept.desc": "Die Wohnung zeigt originale Gem√§lde und Lithografien von Top-K√ľnstlern. W√§hrend Ihres Aufenthalts k√∂nnen Sie Ihr Lieblingsst√ľck kaufen.",
                 "f1.title": "Kuratierte Sammlung", "f1.desc": "Originalwerke renommierter Prager K√ľnstler, sorgf√§ltig f√ľr diesen Raum ausgew√§hlt",
@@ -888,14 +908,16 @@
                 "d.layout": "Grundriss + Abstellraum", "d.area": "Wohnfl√§che", "d.balconies": "Balkone (2√ó)", "d.entrance": "Eingang D",
                 "parking.title": "Tiefgaragenstellplatz", "parking.sub": "Gegen Aufpreis verf√ľgbar",
                 "parking.desc": "Sicherer Stellplatz in der Tiefgarage des Wohnkomplexes. Sparen Sie Parkgeb√ľhren und genie√üen Sie die Sicherheit eines festen Parkplatzes f√ľr Ihr Fahrzeug.",
-                "workshop.title": "Gemeinschaftswerkstatt & Fahrradkeller", "workshop.sub": "Geb√§udeausstattung ¬∑ Inklusive",
+                "workshop.title": "Gemeinschaftswerkstatt & Fahrradkeller", "workshop.sub": "Geb√§udeausstattung ¬∑ Inklusive", "workshop.val": "Werkstatt + Fahrr√§der",
                 "workshop.desc": "Im Untergeschoss des Geb√§udes befinden sich eine Gemeinschaftswerkstatt mit Grundwerkzeug und ein abschlie√übarer Fahrradkeller ‚ÄĒ ideale Unterst√ľtzung f√ľr einen aktiven Alltag im Herzen Prags.",
+                "storage.title": "5,8 m¬≤ Privater Kellerraum", "storage.sub": "Keller neben dem Stellplatz ¬∑ Inklusive", "storage.label": "Privater Kellerraum",
+                "storage.desc": "Ein eigener Kellerabteil im Untergeschoss direkt neben dem Parkplatz ‚ÄĒ ideal f√ľr Koffer, Sportausr√ľstung oder alles, was Sie nicht t√§glich griffbereit ben√∂tigen.",
                 "equip.label": "Ausstattung",
                 "eq.fridge": "Amerikanischer K√ľhlschrank mit Eisw√ľrfelbereiter", "eq.steam": "Dampfgarer", "eq.micro": "Mikrowelle",
                 "eq.coffee": "Kaffeemaschine", "eq.wash": "Waschtrockner", "eq.tv": "Smart TV + Soundbar",
                 "eq.vinyl": "Plattenspieler", "eq.bike": "Design-E-Bike",
                 "gallery.label": "Fotogalerie", "gallery.title": "Entdecken Sie die <em>Wohnung</em>",
-                "map.title": "Strategische <em>Lage</em>", "map.desc": "Perfekte Balance zwischen Kulturleben und Erreichbarkeit. Internationale Schulen in der N√§he. Reiche Kunstszene und Uferpromenaden.",
+                "map.title": "Strategische <em>Lage</em>", "map.desc": "Perfekte Balance zwischen Kulturleben und Erreichbarkeit. Internationale Schulen in der N√§he. Reiche Kunstszene und Uferpromenaden.", "map.desc2": "Ein aufstrebendes, ruhiges Wohnviertel ‚ÄĒ 14 Minuten ins Stadtzentrum sowie zu Prague Studios & Jordan Studios.",
                 "map.btn.map": "Karte", "map.btn.photo": "Foto", "map.btn.simple": "Einfach",
                 "contact.label": "Information & Buchung", "contact.title": "Kontaktieren Sie <em>uns</em>",
                 "contact.desc": "F√ľr weitere Informationen zu mittelfristigen Vermietungen, Kunstpreisen oder zur Buchung einer Besichtigung.",
@@ -904,7 +926,7 @@
             cs: {
                 "nav.concept": "Koncept", "nav.gallery": "Galerie", "nav.location": "Lokalita", "nav.contact": "Kontakt",
                 "hero.tag": "ART APARTMENT PRAHA 7", "hero.title": "Kde <em>umńõn√≠</em> potk√°v√° domov",
-                "hero.claim": "Soukrom√≠. Umńõn√≠. V√°Ň° nov√Ĺ pŇôechodn√Ĺ domov v Praze.", "hero.cta": "Rezervovat prohl√≠dku",
+                "hero.claim": "Soukrom√≠. Umńõn√≠. V√°Ň° nov√Ĺ pŇôechodn√Ĺ domov v Praze.", "hero.sub": "UzavŇôen√Ĺ vnitroblok ‚ÄĒ vaŇ°e soukrom√© √ļtońćiŇ°tńõ uprostŇôed mńõsta.", "hero.cta": "Rezervovat prohl√≠dku",
                 "concept.label": "Unik√°tn√≠ koncept", "concept.title": "Art Apartment <em>Experience</em>",
                 "concept.desc": "Apartm√°n nab√≠z√≠ origin√°ln√≠ obrazy a litografie od Ň°pińćkov√Ĺch ńćesk√Ĺch umńõlcŇĮ. Bńõhem pobytu si vytvoŇôte osobn√≠ vztah ‚Äď a obl√≠ben√© d√≠lo si mŇĮŇĺete zakoupit.",
                 "f1.title": "Kur√°torsk√° kolekce", "f1.desc": "Origin√°ln√≠ d√≠la renomovan√Ĺch praŇĺsk√Ĺch umńõlcŇĮ, peńćlivńõ vybran√° pro tento prostor",
@@ -914,14 +936,16 @@
                 "d.layout": "Dispozice + sklep", "d.area": "Podlahov√° plocha", "d.balconies": "Balkony (2√ó)", "d.entrance": "Vchod D",
                 "parking.title": "Parkovac√≠ m√≠sto v podzemn√≠ gar√°Ňĺi", "parking.sub": "Za pŇô√≠platek",
                 "parking.desc": "D√≠ky parkovac√≠mu m√≠stu z√≠sk√°te bezpeńćn√© m√≠sto pro parkov√°n√≠ vaŇ°eho vozidla v rezidenńćn√≠ z√≥nńõ a uŇ°etŇô√≠te za parkovac√≠ poplatky.",
-                "workshop.title": "Sd√≠len√° d√≠lna & sklad kol", "workshop.sub": "Vybaven√≠ objektu ¬∑ V cenńõ",
+                "workshop.title": "Sd√≠len√° d√≠lna & sklad kol", "workshop.sub": "Vybaven√≠ objektu ¬∑ V cenńõ", "workshop.val": "D√≠lna + kola",
                 "workshop.desc": "V suter√©nn√≠ch prostor√°ch objektu jsou k dispozici sd√≠len√° d√≠lna se z√°kladn√≠m n√°Ňôad√≠m a uzamykateln√Ĺ sklad j√≠zdn√≠ch kol ‚ÄĒ ide√°ln√≠ z√°zem√≠ pro aktivn√≠ Ňĺivot v srdci Prahy.",
+                "storage.title": "5,8 m¬≤ Priv√°tn√≠ sklad", "storage.sub": "Sklep u parkovac√≠ho st√°n√≠ ¬∑ V cenńõ", "storage.label": "Priv√°tn√≠ sklepn√≠ k√≥je",
+                "storage.desc": "Vlastn√≠ sklepn√≠ k√≥je v suter√©nu objektu pŇô√≠mo vedle parkovac√≠ho st√°n√≠ ‚ÄĒ ide√°ln√≠ pro kufry, sportovn√≠ vybaven√≠ nebo vŇ°e, co nepotŇôebujete m√≠t kaŇĺd√Ĺ den po ruce.",
                 "equip.label": "Vybaven√≠ apartm√°nu",
                 "eq.fridge": "Americk√° lednice s v√Ĺrobn√≠kem ledu", "eq.steam": "Parn√≠ trouba", "eq.micro": "Mikrovlnn√° trouba",
                 "eq.coffee": "K√°vovar", "eq.wash": "Prańćka se suŇ°ińćkou", "eq.tv": "Chytr√° televize + Soundbar",
                 "eq.vinyl": "Gramofon", "eq.bike": "Designov√© elektrokolo",
                 "gallery.label": "Fotogalerie", "gallery.title": "Prohl√©dnńõte si <em>apartm√°n</em>",
-                "map.title": "Strategick√° <em>poloha</em>", "map.desc": "Dokonal√° rovnov√°ha mezi kulturn√≠m Ňĺivotem a dostupnost√≠. Mezin√°rodn√≠ Ň°koly v okol√≠. Bohat√° umńõleck√° sc√©na a promen√°dy u Ňôeky.",
+                "map.title": "Strategick√° <em>poloha</em>", "map.desc": "Dokonal√° rovnov√°ha mezi kulturn√≠m Ňĺivotem a dostupnost√≠. Mezin√°rodn√≠ Ň°koly v okol√≠. Bohat√° umńõleck√° sc√©na a promen√°dy u Ňôeky.", "map.desc2": "Rychle se vyv√≠jej√≠c√≠ klidn√° rezidenńćn√≠ ńć√°st ‚ÄĒ 14 minut do centra Prahy i do Prague Studios a Jordan Studios.",
                 "map.btn.map": "Mapa", "map.btn.photo": "Foto", "map.btn.simple": "Jednoduch√©",
                 "contact.label": "Informace a rezervace", "contact.title": "Kontaktujte <em>n√°s</em>",
                 "contact.desc": "Pro v√≠ce informac√≠ o stŇôednńõdob√Ĺch pron√°jmech, cen√°ch umńõleck√Ĺch dńõl nebo rezervaci prohl√≠dky.",
