@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Apartment | Astrid Garden Prague 7</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Outfit:wght@300;400;500&display=swap');
+        
+        :root {
+            --obsidian: #1a1714;
+            --charcoal: #2d2926;
+            --bronze: #b08d57;
+            --sand: #e8e2d9;
+            --ivory: #faf8f4;
+            --cream: #f5f2ec;
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Outfit', -apple-system, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--sans); color: var(--charcoal); background: var(--ivory); font-weight: 300; line-height: 1.6; }
+        
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 1rem 3rem;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(250,248,244,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .nav-left { display: flex; align-items: center; gap: 1.5rem; }
+        .logo {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            color: var(--obsidian);
+            text-decoration: none;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .logo span { color: var(--bronze); }
+        .lang-switch {
+            display: flex; gap: 0.3rem;
+            background: rgba(0,0,0,0.03);
+            padding: 0.25rem; border-radius: 4px;
+        }
+        .lang-btn {
+            background: transparent; border: none;
+            color: var(--charcoal);
+            font-size: 0.7rem; font-weight: 500;
+            cursor: pointer;
+            padding: 0.3rem 0.6rem;
+            opacity: 0.4; border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            opacity: 1;
+            background: var(--bronze);
+            color: white;
+        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--bronze); }
+        
+        .hero-carousel {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+            padding-top: 60px;
+        }
+        .hero-slide {
+            position: absolute;
+            top: 60px; left: 0; right: 0; bottom: 0;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .hero-slide.active { opacity: 1; }
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+        }
+        .hero-content-wrapper {
+            position: absolute;
+            bottom: 15%;
+            left: 5%;
+            right: 5%;
+            color: white;
+            z-index: 10;
+        }
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--bronze);
+            padding: 0.5rem 1rem;
+            background: rgba(0,0,0,0.5);
+            border-left: 3px solid var(--bronze);
+            margin-bottom: 1.5rem;
+        }
+        .hero-title {
+            font-family: var(--serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+        .hero-title em { font-style: italic; color: var(--bronze); }
+        .hero-claim {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+            font-weight: 300;
+            max-width: 600px;
+        }
+        .hero-caption { font-size: 1rem; margin-bottom: 0.3rem; opacity: 0.9; }
+        .hero-caption-sub { font-size: 0.85rem; opacity: 0.7; }
+        .hero-indicators {
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 20;
+        }
+        .hero-indicator {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        .hero-indicator:hover { background: rgba(255,255,255,0.7); }
+        .hero-indicator.active { background: var(--bronze); border-color: white; }
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--bronze);
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+            transition: all 0.3s;
+        }
+        .cta-btn:hover { background: var(--obsidian); }
+        
+        section { padding: 5rem 3rem; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--bronze);
+            margin-bottom: 0.8rem;
+        }
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 300;
+            color: var(--obsidian);
+        }
+        .section-title em { font-style: italic; color: var(--bronze); }
+        
+        .concept { background: var(--cream); }
+        .concept-desc {
+            max-width: 650px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .feature {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: var(--ivory);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+        .feature-num { font-family: var(--serif); font-size: 2rem; color: var(--bronze); opacity: 0.4; margin-bottom: 0.8rem; }
+        .feature h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--obsidian); }
+        .feature p { font-size: 0.85rem; line-height: 1.6; }
+        
+        .details { background: var(--sand); }
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            max-width: 900px;
+            margin: 2.5rem auto 0;
+        }
+        .detail-item { text-align: center; padding: 1.5rem; background: var(--ivory); transition: transform 0.3s; }
+        .detail-item:hover { transform: translateY(-5px); }
+        .detail-val { font-family: var(--serif); font-size: 2rem; color: var(--bronze); margin-bottom: 0.3rem; }
+        .detail-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
+        
+        .gallery { background: var(--cream); }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .gallery-item { position: relative; overflow: hidden; cursor: pointer; aspect-ratio: 4/3; }
+        .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 1rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+        .gallery-item-overlay span { font-size: 0.85rem; font-weight: 500; }
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox-content { max-width: 90vw; max-height: 90vh; position: relative; }
+        .lightbox-content img { max-width: 100%; max-height: 85vh; object-fit: contain; }
+        .lightbox-caption { text-align: center; color: white; margin-top: 1rem; font-size: 0.9rem; }
+        .lightbox-close { position: absolute; top: 2rem; right: 2rem; background: none; border: none; color: white; font-size: 2.5rem; cursor: pointer; z-index: 10; }
+        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); border: none; color: white; font-size: 2rem; padding: 1rem; cursor: pointer; transition: background 0.3s; }
+        .lightbox-nav:hover { background: var(--bronze); }
+        .lightbox-prev { left: 2rem; }
+        .lightbox-next { right: 2rem; }
+        
+        .map-section { background: var(--sand); }
+        .map-intro { max-width: 700px; margin: 0.5rem auto 2rem; text-align: center; font-size: 0.9rem; line-height: 1.7; }
+        .map-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 350px; gap: 1.5rem; }
+        .map-frame { background: var(--cream); height: 650px; border-radius: 4px; position: relative; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .map-frame iframe { width: 100%; height: 100%; border: 0; filter: sepia(15%) saturate(90%) hue-rotate(10deg); }
+        
+        .poi-sidebar { display: flex; flex-direction: column; gap: 0.35rem; max-height: 650px; overflow-y: auto; }
+        .poi-sidebar::-webkit-scrollbar { width: 4px; }
+        .poi-sidebar::-webkit-scrollbar-thumb { background: var(--bronze); border-radius: 2px; }
+        .poi-cat { background: var(--ivory); border-radius: 3px; overflow: hidden; }
+        .poi-header { padding: 0.6rem 0.9rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; font-weight: 500; color: var(--obsidian); transition: background 0.3s; }
+        .poi-header:hover { background: var(--cream); }
+        .poi-toggle { font-size: 0.5rem; color: var(--bronze); transition: transform 0.3s; }
+        .poi-cat.open .poi-toggle { transform: rotate(180deg); }
+        .poi-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .poi-cat.open .poi-content { max-height: 500px; }
+        .poi-list { list-style: none; padding: 0 0.9rem 0.7rem; }
+        .poi-list li { font-size: 0.7rem; padding: 0.3rem 0 0.3rem 0.9rem; border-bottom: 1px solid var(--sand); position: relative; cursor: pointer; transition: all 0.3s; }
+        .poi-list li:last-child { border-bottom: none; }
+        .poi-list li::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--bronze); opacity: 0.7; }
+        .poi-list li:hover { color: var(--bronze); padding-left: 1.1rem; }
+        .poi-list li.active { background: rgba(176,141,87,0.1); color: var(--bronze); font-weight: 500; }
+        
+        .contact { background: var(--obsidian); color: var(--ivory); text-align: center; }
+        .contact .section-label { color: var(--bronze); }
+        .contact .section-title { color: var(--ivory); margin-bottom: 1rem; }
+        .contact-desc { max-width: 500px; margin: 0 auto 2.5rem; color: rgba(255,255,255,0.6); font-size: 0.95rem; }
+        .contact-grid { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
+        .contact-item { text-align: center; }
+        .contact-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bronze); margin-bottom: 0.5rem; }
+        .contact-item a { color: var(--ivory); text-decoration: none; font-family: var(--serif); font-size: 1.1rem; transition: color 0.3s; }
+        .contact-item a:hover { color: var(--bronze); }
+        
+        footer { padding: 1.5rem 3rem; background: var(--obsidian); border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+        footer a { color: rgba(255,255,255,0.4); text-decoration: none; margin-left: 1.5rem; }
+        footer a:hover { color: var(--bronze); }
+        
+        @media (max-width: 1024px) {
+            .features { grid-template-columns: 1fr; max-width: 400px; }
+            .details-grid { grid-template-columns: repeat(2, 1fr); }
+            .map-container { grid-template-columns: 1fr; }
+            .poi-sidebar { max-height: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item:first-child { grid-column: span 2; grid-row: span 1; }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 0.8rem 1.5rem; }
+            .nav-links { display: none; }
+            section { padding: 3rem 1.5rem; }
+            .details-grid { grid-template-columns: 1fr; }
+            .poi-sidebar { grid-template-columns: 1fr; }
+            .contact-grid { flex-direction: column; gap: 2rem; }
+            footer { flex-direction: column; gap: 1rem; text-align: center; }
+            .map-frame { height: 400px; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-item:first-child { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="#" class="logo">Art <span>Apartment</span></a>
+            <div class="lang-switch">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="cs">CZ</button>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#concept" data-i18n="nav.concept">Concept</a></li>
+            <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+            <li><a href="#location" data-i18n="nav.location">Location</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero-carousel">
+        <div class="hero-slide active"><img src="images/hero-courtyard.jpg" alt="Astrid Garden"><div class="hero-overlay"></div></div>
+        <div class="hero-slide"><img src="images/hero-living-room.jpg" alt="Living Room"><div class="hero-overlay"></div></div>
+        <div class="hero-slide"><img src="images/hero-kitchen.jpg" alt="Kitchen"><div class="hero-overlay"></div></div>
+        <div class="hero-slide"><img src="images/hero-bedroom.jpg" alt="Bedroom"><div class="hero-overlay"></div></div>
+        <div class="hero-slide"><img src="images/bedroom-balcony.jpg" alt="Balcony"><div class="hero-overlay"></div></div>
+        <div class="hero-slide"><img src="images/living-kitchen-wide.jpg" alt="Living"><div class="hero-overlay"></div></div>
+        <div class="hero-slide"><img src="images/hallway-art.jpg" alt="Hallway"><div class="hero-overlay"></div></div>
+        <div class="hero-slide"><img src="images/bathroom.jpg" alt="Bathroom"><div class="hero-overlay"></div></div>
+        
+        <div class="hero-content-wrapper">
+            <div class="hero-tag" data-i18n="hero.tag">ART APARTMENT PRAGUE 7</div>
+            <h1 class="hero-title" data-i18n="hero.title">Where <em>art</em> meets home</h1>
+            <p class="hero-claim" data-i18n="hero.claim">Privacy. Art. Your new temporary home in Prague.</p>
+            <div class="hero-caption" id="heroCaption">Astrid Garden Courtyard</div>
+            <div class="hero-caption-sub" id="heroCaptionSub">Private residence in Prague 7</div>
+            <a href="#contact" class="cta-btn" data-i18n="hero.cta">Book a Viewing</a>
+        </div>
+        
+        <div class="hero-indicators">
+            <div class="hero-indicator active" onclick="goToSlide(0)"></div>
+            <div class="hero-indicator" onclick="goToSlide(1)"></div>
+            <div class="hero-indicator" onclick="goToSlide(2)"></div>
+            <div class="hero-indicator" onclick="goToSlide(3)"></div>
+            <div class="hero-indicator" onclick="goToSlide(4)"></div>
+            <div class="hero-indicator" onclick="goToSlide(5)"></div>
+            <div class="hero-indicator" onclick="goToSlide(6)"></div>
+            <div class="hero-indicator" onclick="goToSlide(7)"></div>
+        </div>
+    </section>
+
+    <section class="concept" id="concept">
+        <div class="section-header">
+            <div class="section-label" data-i18n="concept.label">Unique Concept</div>
+            <h2 class="section-title" data-i18n="concept.title">Art Apartment <em>Experience</em></h2>
+        </div>
+        <p class="concept-desc" data-i18n="concept.desc">The apartment features original paintings and lithographs by top local artists. During your stay, form a connection – and purchase your favorite as a memento.</p>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-num">01</div>
+                <h3 data-i18n="f1.title">Curated Collection</h3>
+                <p data-i18n="f1.desc">Original works by renowned Prague artists, carefully selected for this space</p>
+            </div>
+            <div class="feature">
+                <div class="feature-num">02</div>
+                <h3 data-i18n="f2.title">Live with Art</h3>
+                <p data-i18n="f2.desc">Form a personal connection with the works that surround you daily</p>
+            </div>
+            <div class="feature">
+                <div class="feature-num">03</div>
+                <h3 data-i18n="f3.title">Take Home a Memory</h3>
+                <p data-i18n="f3.desc">Purchase a piece as a souvenir. We arrange international shipping</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="details">
+        <div class="section-header">
+            <div class="section-label" data-i18n="details.label">Specifications</div>
+            <h2 class="section-title" data-i18n="details.title">Apartment in <em>Astrid Garden</em></h2>
+        </div>
+        <div class="details-grid">
+            <div class="detail-item"><div class="detail-val">3+kk</div><div class="detail-label" data-i18n="d.layout">Layout + storage</div></div>
+            <div class="detail-item"><div class="detail-val">73.5 m²</div><div class="detail-label" data-i18n="d.area">Floor area</div></div>
+            <div class="detail-item"><div class="detail-val">13.7 m²</div><div class="detail-label" data-i18n="d.balconies">Balconies (2×)</div></div>
+            <div class="detail-item"><div class="detail-val" data-i18n="d.entrance">Entrance D</div><div class="detail-label">Astrid Garden</div></div>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <div class="section-header">
+            <div class="section-label" data-i18n="gallery.label">Photo Gallery</div>
+            <h2 class="section-title" data-i18n="gallery.title">Explore the <em>Apartment</em></h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox(0)"><img src="images/hero-courtyard.jpg" alt="Courtyard" loading="lazy"><div class="gallery-item-overlay"><span>Astrid Garden</span></div></div>
+            <div class="gallery-item" onclick="openLightbox(1)"><img src="images/hero-living-room.jpg" alt="Living" loading="lazy"><div class="gallery-item-overlay"><span>Living Room</span></div></div>
+            <div class="gallery-item" onclick="openLightbox(2)"><img src="images/hero-kitchen.jpg" alt="Kitchen" loading="lazy"><div class="gallery-item-overlay"><span>Kitchen</span></div></div>
+            <div class="gallery-item" onclick="openLightbox(3)"><img src="images/hero-bedroom.jpg" alt="Bedroom" loading="lazy"><div class="gallery-item-overlay"><span>Bedroom</span></div></div>
+            <div class="gallery-item" onclick="openLightbox(4)"><img src="images/bedroom-balcony.jpg" alt="Balcony" loading="lazy"><div class="gallery-item-overlay"><span>Balcony</span></div></div>
+            <div class="gallery-item" onclick="openLightbox(5)"><img src="images/living-kitchen-wide.jpg" alt="Living" loading="lazy"><div class="gallery-item-overlay"><span>Open Space</span></div></div>
+            <div class="gallery-item" onclick="openLightbox(6)"><img src="images/hallway-art.jpg" alt="Hallway" loading="lazy"><div class="gallery-item-overlay"><span>Hallway</span></div></div>
+            <div class="gallery-item" onclick="openLightbox(7)"><img src="images/bathroom.jpg" alt="Bathroom" loading="lazy"><div class="gallery-item-overlay"><span>Bathroom</span></div></div>
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <button class="lightbox-nav lightbox-prev" onclick="lightboxPrev()">‹</button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="lightboxNext()">›</button>
+    </div>
+
+    <section class="map-section" id="location">
+        <div class="section-header">
+            <div class="section-label">Holešovice · Prague 7</div>
+            <h2 class="section-title" data-i18n="map.title">Strategic <em>Location</em></h2>
+        </div>
+        <p class="map-intro" data-i18n="map.desc">Perfect balance between cultural life and accessibility. International schools nearby. Rich art scene and riverside promenades.</p>
+        
+        <div class="map-container">
+            <div class="map-frame">
+                <iframe id="googleMap" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=U+Průhonu+700/10,+Praha+7&zoom=15" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="poi-sidebar">
+                <!-- Restaurants & Bars -->
+                <div class="poi-cat open">
+                    <div class="poi-header" onclick="togglePoi(this)"><span>🍽 Restaurants & Bars</span><span class="poi-toggle">▼</span></div>
+                    <div class="poi-content">
+                        <ul class="poi-list">
+                            <li data-place="Mexická restaurace, Komunardů 42, Praha 7" onclick="showPlace(this)">Mexická</li>
+                            <li data-place="PRU58, Tusarova 58, Praha 7" onclick="showPlace(this)">PRU58</li>
+                            <li data-place="Slice Slice Baby, Dělnická 19, Praha 7" onclick="showPlace(this)">Slice Slice Baby</li>
+                            <li data-place="Sip Sip Hooray, Dělnická 19, Praha 7" onclick="showPlace(this)">Sip Sip Hooray</li>
+                            <li data-place="Lokál Nad Stromovkou, Praha 7" onclick="showPlace(this)">Lokál Nad Stromovkou</li>
+                            <li data-place="Home Kitchen, Janovského, Praha 7" onclick="showPlace(this)">Home Kitchen</li>
+                            <li data-place="Vnitroblock, Tusarova, Praha 7" onclick="showPlace(this)">Vnitroblock</li>
+                            <li data-place="Cobra bar, Milady Horákové, Praha 7" onclick="showPlace(this)">Cobra</li>
+                            <li data-place="Informace bar, Letenské náměstí, Praha 7" onclick="showPlace(this)">Informace</li>
+                            <li data-place="Brasserie La Gare, Praha 7 Letná" onclick="showPlace(this)">Brasserie La Gare</li>
+                            <li data-place="Burgerman, Praha 7" onclick="showPlace(this)">Burgerman</li>
+                            <li data-place="Big Smokers, Praha 7 Holešovice" onclick="showPlace(this)">Big Smokers</li>
+                            <li data-place="Paralelní Polis, Dělnická, Praha 7" onclick="showPlace(this)">Paralelní Polis</li>
+                            <li data-place="Ramen, Dělnická Osadní, Praha 7" onclick="showPlace(this)">Ramen Dělnická</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Cafés & Bakeries -->
+                <div class="poi-cat">
+                    <div class="poi-header" onclick="togglePoi(this)"><span>☕ Cafés & Bakeries</span><span class="poi-toggle">▼</span></div>
+                    <div class="poi-content">
+                        <ul class="poi-list">
+                            <li data-place="Ema espresso bar, Komunardů 42, Praha 7" onclick="showPlace(this)">Ema Espresso Bar</li>
+                            <li data-place="Miners Coffee, Komunardů, Praha 7" onclick="showPlace(this)">Miners Coffee</li>
+                            <li data-place="Eska Letná, Veletržní 42, Praha 7" onclick="showPlace(this)">Eska Letná</li>
+                            <li data-place="Phil's Corner, Praha 7" onclick="showPlace(this)">Phil's Corner</li>
+                            <li data-place="Café Letka, Praha 7" onclick="showPlace(this)">Café Letka</li>
+                            <li data-place="Antonínovo pekařství, Strossmayerovo náměstí 11, Praha 7" onclick="showPlace(this)">Antonínovo pekařství</li>
+                            <li data-place="Naše Toustárna, V Háji 10, Praha 7" onclick="showPlace(this)">Naše Toustárna</li>
+                            <li data-place="DOX Café, Poupětova, Praha 7" onclick="showPlace(this)">DOX Café</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Galleries & Art -->
+                <div class="poi-cat">
+                    <div class="poi-header" onclick="togglePoi(this)"><span>🖼 Galleries & Art</span><span class="poi-toggle">▼</span></div>
+                    <div class="poi-content">
+                        <ul class="poi-list">
+                            <li data-place="DOX Centre for Contemporary Art, Poupětova, Praha 7" onclick="showPlace(this)">DOX Centre</li>
+                            <li data-place="Veletržní palác, Dukelských hrdinů, Praha 7" onclick="showPlace(this)">Veletržní palác</li>
+                            <li data-place="Kunsthalle Praha, Klárov 5, Praha 1" onclick="showPlace(this)">Kunsthalle Praha</li>
+                            <li data-place="Karpuchina Gallery, Rybná 22, Praha 1" onclick="showPlace(this)">Karpuchina Gallery</li>
+                            <li data-place="Galerie Villa Pellé, Praha 6 Bubeneč" onclick="showPlace(this)">Villa Pellé</li>
+                            <li data-place="Trafo Gallery, Praha 7" onclick="showPlace(this)">Trafo Gallery</li>
+                            <li data-place="The Chemistry Gallery, Praha 7" onclick="showPlace(this)">The Chemistry Gallery</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Theatres -->
+                <div class="poi-cat">
+                    <div class="poi-header" onclick="togglePoi(this)"><span>🎭 Theatres</span><span class="poi-toggle">▼</span></div>
+                    <div class="poi-content">
+                        <ul class="poi-list">
+                            <li data-place="Jatka78, Holešovická tržnice, Praha 7" onclick="showPlace(this)">Jatka78</li>
+                            <li data-place="La Fabrika, Komunardů 30, Praha 7" onclick="showPlace(this)">La Fabrika</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- International Schools -->
+                <div class="poi-cat">
+                    <div class="poi-header" onclick="togglePoi(this)"><span>🎓 International Schools</span><span class="poi-toggle">▼</span></div>
+                    <div class="poi-content">
+                        <ul class="poi-list">
+                            <li data-place="International School of Prague, Nebušice" onclick="showPlace(this)">International School of Prague</li>
+                            <li data-place="Riverside School, Praha 6 Sedlec" onclick="showPlace(this)">Riverside School</li>
+                            <li data-place="Prague British International School, Praha" onclick="showPlace(this)">Prague British Int. School</li>
+                            <li data-place="BASIS Prague International School, Bubeneč" onclick="showPlace(this)">BASIS Prague</li>
+                            <li data-place="Dětské hřiště Ortenovo náměstí, Praha 7" onclick="showPlace(this)">Playground Ortenovo nám.</li>
+                            <li data-place="Dětské hřiště Stromovka, Praha 7" onclick="showPlace(this)">Playground Stromovka</li>
+                            <li data-place="Dětské hřiště Letná, Praha 7" onclick="showPlace(this)">Playground Letná</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Holešovická Tržnice -->
+                <div class="poi-cat">
+                    <div class="poi-header" onclick="togglePoi(this)"><span>🛒 Holešovická Tržnice</span><span class="poi-toggle">▼</span></div>
+                    <div class="poi-content">
+                        <ul class="poi-list">
+                            <li data-place="Holešovická tržnice, Bubenské nábřeží, Praha 7" onclick="showPlace(this)">Holešovická Tržnice</li>
+                            <li data-place="Manifesto Market Holešovice, Praha 7" onclick="showPlace(this)">Manifesto Market</li>
+                            <li data-place="Cross Club, Plynární, Praha 7" onclick="showPlace(this)">Cross Club</li>
+                            <li data-place="Cest restaurant, Holešovická tržnice, Praha 7" onclick="showPlace(this)">Cest</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Film Studios -->
+                <div class="poi-cat">
+                    <div class="poi-header" onclick="togglePoi(this)"><span>🎬 Film Studios</span><span class="poi-toggle">▼</span></div>
+                    <div class="poi-content">
+                        <ul class="poi-list">
+                            <li data-place="Barrandov Studios, Kříženeckého náměstí, Praha 5" onclick="showPlace(this)">Barrandov Studios</li>
+                            <li data-place="Beranových 823, Praha 18 Letňany" onclick="showPlace(this)">Jordan Studios</li>
+                            <li data-place="Prague Studios, Letňany" onclick="showPlace(this)">Prague Studios</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Fitness -->
+                <div class="poi-cat">
+                    <div class="poi-header" onclick="togglePoi(this)"><span>💪 Fitness</span><span class="poi-toggle">▼</span></div>
+                    <div class="poi-content">
+                        <ul class="poi-list">
+                            <li data-place="Next.Move, Dělnická 9, Praha 7" onclick="showPlace(this)">Next.Move</li>
+                            <li data-place="Form Factory Holešovice, Praha 7" onclick="showPlace(this)">Form Factory</li>
+                            <li data-place="The Gym Argentinská, Praha 7" onclick="showPlace(this)">The Gym Argentinská</li>
+                            <li data-place="OneGym Holešovice, Praha 7" onclick="showPlace(this)">OneGym</li>
+                            <li data-place="Max Fitness, Komunardů, Praha 7" onclick="showPlace(this)">Max Fitness</li>
+                            <li data-place="FITINN Stromovka, Veletržní, Praha 7" onclick="showPlace(this)">FITINN</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Barber Shops -->
+                <div class="poi-cat">
+                    <div class="poi-header" onclick="togglePoi(this)"><span>💈 Barber Shops</span><span class="poi-toggle">▼</span></div>
+                    <div class="poi-content">
+                        <ul class="poi-list">
+                            <li data-place="Pepe's Barbershop, Praha 7 Holešovice" onclick="showPlace(this)">Pepe's Barbershop</li>
+                            <li data-place="West Wood Barbershop, Jankovcova, Praha 7" onclick="showPlace(this)">West Wood Barbershop</li>
+                            <li data-place="Icon Barbershop, Jateční, Praha 7" onclick="showPlace(this)">Icon Barbershop</li>
+                            <li data-place="The Crown Barbershop, Tusarova, Praha 7" onclick="showPlace(this)">The Crown Barbershop</li>
+                            <li data-place="Holičství Holešovice, Jankovcova, Praha 7" onclick="showPlace(this)">Holičství Holešovice</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Nature & Parks -->
+                <div class="poi-cat">
+                    <div class="poi-header" onclick="togglePoi(this)"><span>🌳 Nature & Parks</span><span class="poi-toggle">▼</span></div>
+                    <div class="poi-content">
+                        <ul class="poi-list">
+                            <li data-place="Stromovka Park, Praha 7" onclick="showPlace(this)">Stromovka</li>
+                            <li data-place="Letenské sady, Praha 7" onclick="showPlace(this)">Letná Gardens</li>
+                            <li data-place="Náplavka Holešovice, Praha 7" onclick="showPlace(this)">Holešovice Riverbank</li>
+                            <li data-place="Trojský zámek, Praha" onclick="showPlace(this)">Troja Chateau</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Downtown -->
+                <div class="poi-cat">
+                    <div class="poi-header" onclick="togglePoi(this)"><span>🏛 Downtown Prague</span><span class="poi-toggle">▼</span></div>
+                    <div class="poi-content">
+                        <ul class="poi-list">
+                            <li data-place="Staroměstské náměstí, Praha" onclick="showPlace(this)">Old Town Square</li>
+                            <li data-place="Karlův most, Praha" onclick="showPlace(this)">Charles Bridge</li>
+                            <li data-place="Pražský hrad, Praha" onclick="showPlace(this)">Prague Castle</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <div class="section-label" data-i18n="contact.label">Information & Booking</div>
+            <h2 class="section-title" data-i18n="contact.title">Contact <em>Us</em></h2>
+        </div>
+        <p class="contact-desc" data-i18n="contact.desc">For more information about mid-term rentals, artwork prices, or to book a viewing.</p>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-label" data-i18n="c.phone">Phone</div>
+                <a href="tel:+420602150057">+420 602 150 057</a>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Email</div>
+                <a href="mailto:info@artapartment.cz">info@artapartment.cz</a>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label" data-i18n="c.address">Address</div>
+                <a href="#location">U Průhonu 700/10, Praha 7</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div>© 2026 Art Apartment · Astrid Garden, Prague 7</div>
+        <div><a href="#">Privacy Policy</a><a href="#">Instagram</a></div>
+    </footer>
+
+    <script>
+        const TRANSLATIONS = {
+            en: {
+                "nav.concept": "Concept", "nav.gallery": "Gallery", "nav.location": "Location", "nav.contact": "Contact",
+                "hero.tag": "ART APARTMENT PRAGUE 7", "hero.title": "Where <em>art</em> meets home",
+                "hero.claim": "Privacy. Art. Your new temporary home in Prague.", "hero.cta": "Book a Viewing",
+                "concept.label": "Unique Concept", "concept.title": "Art Apartment <em>Experience</em>",
+                "concept.desc": "The apartment features original paintings and lithographs by top local artists. During your stay, form a connection – and purchase your favorite as a memento.",
+                "f1.title": "Curated Collection", "f1.desc": "Original works by renowned Prague artists, carefully selected for this space",
+                "f2.title": "Live with Art", "f2.desc": "Form a personal connection with the works that surround you daily",
+                "f3.title": "Take Home a Memory", "f3.desc": "Purchase a piece as a souvenir. We arrange international shipping",
+                "details.label": "Specifications", "details.title": "Apartment in <em>Astrid Garden</em>",
+                "d.layout": "Layout + storage", "d.area": "Floor area", "d.balconies": "Balconies (2×)", "d.entrance": "Entrance D",
+                "gallery.label": "Photo Gallery", "gallery.title": "Explore the <em>Apartment</em>",
+                "map.title": "Strategic <em>Location</em>", "map.desc": "Perfect balance between cultural life and accessibility. International schools nearby. Rich art scene and riverside promenades.",
+                "contact.label": "Information & Booking", "contact.title": "Contact <em>Us</em>",
+                "contact.desc": "For more information about mid-term rentals, artwork prices, or to book a viewing.",
+                "c.phone": "Phone", "c.address": "Address"
+            },
+            de: {
+                "nav.concept": "Konzept", "nav.gallery": "Galerie", "nav.location": "Lage", "nav.contact": "Kontakt",
+                "hero.tag": "ART APARTMENT PRAG 7", "hero.title": "Wo <em>Kunst</em> auf Zuhause trifft",
+                "hero.claim": "Privatsphäre. Kunst. Ihr neues temporäres Zuhause in Prag.", "hero.cta": "Besichtigung buchen",
+                "concept.label": "Einzigartiges Konzept", "concept.title": "Art Apartment <em>Erlebnis</em>",
+                "concept.desc": "Die Wohnung zeigt originale Gemälde und Lithografien von Top-Künstlern. Während Ihres Aufenthalts können Sie Ihr Lieblingsstück kaufen.",
+                "f1.title": "Kuratierte Sammlung", "f1.desc": "Originalwerke renommierter Prager Künstler, sorgfältig für diesen Raum ausgewählt",
+                "f2.title": "Leben mit Kunst", "f2.desc": "Entwickeln Sie eine persönliche Verbindung zu den Werken, die Sie täglich umgeben",
+                "f3.title": "Nehmen Sie eine Erinnerung mit", "f3.desc": "Kaufen Sie ein Stück als Souvenir. Wir arrangieren den internationalen Versand",
+                "details.label": "Spezifikationen", "details.title": "Wohnung im <em>Astrid Garden</em>",
+                "d.layout": "Grundriss + Abstellraum", "d.area": "Wohnfläche", "d.balconies": "Balkone (2×)", "d.entrance": "Eingang D",
+                "gallery.label": "Fotogalerie", "gallery.title": "Entdecken Sie die <em>Wohnung</em>",
+                "map.title": "Strategische <em>Lage</em>", "map.desc": "Perfekte Balance zwischen Kulturleben und Erreichbarkeit. Internationale Schulen in der Nähe. Reiche Kunstszene und Uferpromenaden.",
+                "contact.label": "Information & Buchung", "contact.title": "Kontaktieren Sie <em>uns</em>",
+                "contact.desc": "Für weitere Informationen zu mittelfristigen Vermietungen, Kunstpreisen oder zur Buchung einer Besichtigung.",
+                "c.phone": "Telefon", "c.address": "Adresse"
+            },
+            cs: {
+                "nav.concept": "Koncept", "nav.gallery": "Galerie", "nav.location": "Lokalita", "nav.contact": "Kontakt",
+                "hero.tag": "ART APARTMENT PRAHA 7", "hero.title": "Kde <em>umění</em> potkává domov",
+                "hero.claim": "Soukromí. Umění. Váš nový přechodný domov v Praze.", "hero.cta": "Rezervovat prohlídku",
+                "concept.label": "Unikátní koncept", "concept.title": "Art Apartment <em>Experience</em>",
+                "concept.desc": "Apartmán nabízí originální obrazy a litografie od špičkových českých umělců. Během pobytu si vytvořte osobní vztah – a oblíbené dílo si můžete zakoupit.",
+                "f1.title": "Kurátorská kolekce", "f1.desc": "Originální díla renomovaných pražských umělců, pečlivě vybraná pro tento prostor",
+                "f2.title": "Žijte s uměním", "f2.desc": "Vytvořte si osobní vztah k dílům, která vás denně obklopují",
+                "f3.title": "Odvezte si vzpomínku", "f3.desc": "Zakupte si dílo jako suvenýr. Zajistíme mezinárodní dopravu",
+                "details.label": "Specifikace", "details.title": "Apartmán v <em>Astrid Garden</em>",
+                "d.layout": "Dispozice + sklep", "d.area": "Podlahová plocha", "d.balconies": "Balkony (2×)", "d.entrance": "Vchod D",
+                "gallery.label": "Fotogalerie", "gallery.title": "Prohlédněte si <em>apartmán</em>",
+                "map.title": "Strategická <em>poloha</em>", "map.desc": "Dokonalá rovnováha mezi kulturním životem a dostupností. Mezinárodní školy v okolí. Bohatá umělecká scéna a promenády u řeky.",
+                "contact.label": "Informace a rezervace", "contact.title": "Kontaktujte <em>nás</em>",
+                "contact.desc": "Pro více informací o střednědobých pronájmech, cenách uměleckých děl nebo rezervaci prohlídky.",
+                "c.phone": "Telefon", "c.address": "Adresa"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function setLang(lang) {
+            currentLang = lang;
+            const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.innerHTML = t[key];
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+            document.documentElement.lang = lang;
+            localStorage.setItem('lang', lang);
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+        });
+
+        function showPlace(element) {
+            const place = element.getAttribute('data-place');
+            document.querySelectorAll('.poi-list li').forEach(li => li.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('googleMap').src = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(place)}&zoom=16`;
+        }
+
+        function togglePoi(header) {
+            const currentCat = header.parentElement;
+            const isOpen = currentCat.classList.contains('open');
+            document.querySelectorAll('.poi-cat').forEach(cat => cat.classList.remove('open'));
+            if (!isOpen) currentCat.classList.add('open');
+        }
+
+        const galleryImages = [
+            { src: 'images/hero-courtyard.jpg', caption: 'Astrid Garden' },
+            { src: 'images/hero-living-room.jpg', caption: 'Living Room' },
+            { src: 'images/hero-kitchen.jpg', caption: 'Kitchen' },
+            { src: 'images/hero-bedroom.jpg', caption: 'Bedroom' },
+            { src: 'images/bedroom-balcony.jpg', caption: 'Balcony' },
+            { src: 'images/living-kitchen-wide.jpg', caption: 'Open Space' },
+            { src: 'images/hallway-art.jpg', caption: 'Hallway' },
+            { src: 'images/bathroom.jpg', caption: 'Bathroom' }
+        ];
+        let currentLightboxIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            lightboxImg.src = galleryImages[index].src;
+            lightboxCaption.textContent = galleryImages[index].caption;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+        function lightboxNext() {
+            currentLightboxIndex = (currentLightboxIndex + 1) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentLightboxIndex].src;
+            lightboxCaption.textContent = galleryImages[currentLightboxIndex].caption;
+        }
+        function lightboxPrev() {
+            currentLightboxIndex = (currentLightboxIndex - 1 + galleryImages.length) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentLightboxIndex].src;
+            lightboxCaption.textContent = galleryImages[currentLightboxIndex].caption;
+        }
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') lightboxNext();
+            if (e.key === 'ArrowLeft') lightboxPrev();
+        });
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const heroIndicators = document.querySelectorAll('.hero-indicator');
+        const heroCaption = document.getElementById('heroCaption');
+        const heroCaptionSub = document.getElementById('heroCaptionSub');
+        const slideCaptions = [
+            { title: 'Astrid Garden Courtyard', sub: 'Private residence in Prague 7' },
+            { title: 'Living Room', sub: 'Original artworks & designer furniture' },
+            { title: 'Kitchen & Dining', sub: 'Fully equipped modern kitchen' },
+            { title: 'Master Bedroom', sub: 'Contemporary art collection' },
+            { title: 'Bedroom with Balcony', sub: 'Access to private balcony' },
+            { title: 'Open Living Space', sub: 'Seamless living & dining area' },
+            { title: 'Art Throughout', sub: 'Curated collection in every room' },
+            { title: 'Modern Bathroom', sub: 'Elegant design with bathtub' }
+        ];
+        let currentSlide = 0, slideInterval;
+
+        function goToSlide(index) {
+            heroSlides[currentSlide].classList.remove('active');
+            heroIndicators[currentSlide].classList.remove('active');
+            currentSlide = index;
+            heroSlides[currentSlide].classList.add('active');
+            heroIndicators[currentSlide].classList.add('active');
+            heroCaption.textContent = slideCaptions[currentSlide].title;
+            heroCaptionSub.textContent = slideCaptions[currentSlide].sub;
+            clearInterval(slideInterval);
+            startSlideShow();
+        }
+        function nextSlide() { goToSlide((currentSlide + 1) % heroSlides.length); }
+        function startSlideShow() { slideInterval = setInterval(nextSlide, 5000); }
+        startSlideShow();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('lang');
+            const browserLang = (navigator.language || 'en').split('-')[0];
+            setLang(savedLang || (TRANSLATIONS[browserLang] ? browserLang : 'en'));
+        });
+    </script>
+</body>
+</html>
