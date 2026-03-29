@@ -219,6 +219,47 @@
         .detail-val { font-family: var(--serif); font-size: 2rem; color: var(--bronze); margin-bottom: 0.3rem; }
         .detail-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
 
+        .parking-callout {
+            max-width: 900px;
+            margin: 1.5rem auto 0;
+            background: var(--ivory);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+        .parking-icon {
+            flex-shrink: 0;
+            width: 44px; height: 44px;
+            border: 1.5px solid var(--bronze);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            color: var(--bronze);
+            font-weight: 500;
+        }
+        .parking-body { flex: 1; }
+        .parking-title {
+            font-family: var(--serif);
+            font-size: 1rem;
+            color: var(--obsidian);
+            margin-bottom: 0.15rem;
+        }
+        .parking-sub {
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--bronze);
+            margin-bottom: 0.6rem;
+        }
+        .parking-desc {
+            font-size: 0.8rem;
+            color: var(--charcoal);
+            line-height: 1.6;
+            opacity: 0.85;
+        }
+
         .equip-section {
             max-width: 900px;
             margin: 2.5rem auto 0;
@@ -449,6 +490,14 @@
             <div class="detail-item"><div class="detail-val">73.5 m²</div><div class="detail-label" data-i18n="d.area">Floor area</div></div>
             <div class="detail-item"><div class="detail-val">13.7 m²</div><div class="detail-label" data-i18n="d.balconies">Balconies (2×)</div></div>
             <div class="detail-item"><div class="detail-val" data-i18n="d.entrance">Entrance D</div><div class="detail-label">Astrid Garden</div></div>
+        </div>
+        <div class="parking-callout">
+            <div class="parking-icon">P</div>
+            <div class="parking-body">
+                <div class="parking-title" data-i18n="parking.title">Underground Parking</div>
+                <div class="parking-sub" data-i18n="parking.sub">Available at extra cost</div>
+                <div class="parking-desc" data-i18n="parking.desc">Secure parking space in the residential underground garage. Save on parking fees and enjoy peace of mind with a designated spot for your vehicle.</div>
+            </div>
         </div>
         <div class="equip-section">
             <div class="equip-section-label" data-i18n="equip.label">Included Equipment</div>
@@ -732,6 +781,8 @@
                 "f3.title": "Take Home a Memory", "f3.desc": "Purchase a piece as a souvenir. We arrange international shipping",
                 "details.label": "Specifications", "details.title": "Apartment in <em>Astrid Garden</em>",
                 "d.layout": "Layout + storage", "d.area": "Floor area", "d.balconies": "Balconies (2×)", "d.entrance": "Entrance D",
+                "parking.title": "Underground Parking", "parking.sub": "Available at extra cost",
+                "parking.desc": "Secure parking space in the residential underground garage. Save on parking fees and enjoy peace of mind with a designated spot for your vehicle.",
                 "equip.label": "Included Equipment",
                 "eq.fridge": "American fridge with ice maker", "eq.steam": "Steam oven", "eq.micro": "Microwave oven",
                 "eq.coffee": "Coffee machine", "eq.wash": "Washer-dryer", "eq.tv": "Smart TV + Soundbar",
@@ -753,6 +804,8 @@
                 "f3.title": "Nehmen Sie eine Erinnerung mit", "f3.desc": "Kaufen Sie ein Stück als Souvenir. Wir arrangieren den internationalen Versand",
                 "details.label": "Spezifikationen", "details.title": "Wohnung im <em>Astrid Garden</em>",
                 "d.layout": "Grundriss + Abstellraum", "d.area": "Wohnfläche", "d.balconies": "Balkone (2×)", "d.entrance": "Eingang D",
+                "parking.title": "Tiefgaragenstellplatz", "parking.sub": "Gegen Aufpreis verfügbar",
+                "parking.desc": "Sicherer Stellplatz in der Tiefgarage des Wohnkomplexes. Sparen Sie Parkgebühren und genießen Sie die Sicherheit eines festen Parkplatzes für Ihr Fahrzeug.",
                 "equip.label": "Ausstattung",
                 "eq.fridge": "Amerikanischer Kühlschrank mit Eiswürfelbereiter", "eq.steam": "Dampfgarer", "eq.micro": "Mikrowelle",
                 "eq.coffee": "Kaffeemaschine", "eq.wash": "Waschtrockner", "eq.tv": "Smart TV + Soundbar",
@@ -774,6 +827,8 @@
                 "f3.title": "Odvezte si vzpomínku", "f3.desc": "Zakupte si dílo jako suvenýr. Zajistíme mezinárodní dopravu",
                 "details.label": "Specifikace", "details.title": "Apartmán v <em>Astrid Garden</em>",
                 "d.layout": "Dispozice + sklep", "d.area": "Podlahová plocha", "d.balconies": "Balkony (2×)", "d.entrance": "Vchod D",
+                "parking.title": "Parkovací místo v podzemní garáži", "parking.sub": "Za příplatek",
+                "parking.desc": "Díky parkovacímu místu získáte bezpečné místo pro parkování vašeho vozidla v rezidenční zóně a ušetříte za parkovací poplatky.",
                 "equip.label": "Vybavení apartmánu",
                 "eq.fridge": "Americká lednice s výrobníkem ledu", "eq.steam": "Parní trouba", "eq.micro": "Mikrovlnná trouba",
                 "eq.coffee": "Kávovar", "eq.wash": "Pračka se sušičkou", "eq.tv": "Chytrá televize + Soundbar",
