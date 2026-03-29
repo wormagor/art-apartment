@@ -218,7 +218,47 @@
         .detail-item:hover { transform: translateY(-5px); }
         .detail-val { font-family: var(--serif); font-size: 2rem; color: var(--bronze); margin-bottom: 0.3rem; }
         .detail-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
-        
+
+        .equip-section {
+            max-width: 900px;
+            margin: 2.5rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+        .equip-section-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--bronze);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .equip-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+        }
+        .equip-item {
+            background: var(--ivory);
+            padding: 1.25rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            transition: transform 0.3s;
+        }
+        .equip-item:hover { transform: translateY(-3px); }
+        .equip-item-brand {
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--bronze);
+        }
+        .equip-item-name {
+            font-size: 0.78rem;
+            color: var(--charcoal);
+            line-height: 1.4;
+        }
+
         .gallery { background: var(--cream); }
         .gallery-grid {
             display: grid;
@@ -405,6 +445,43 @@
             <div class="detail-item"><div class="detail-val">73.5 m²</div><div class="detail-label" data-i18n="d.area">Floor area</div></div>
             <div class="detail-item"><div class="detail-val">13.7 m²</div><div class="detail-label" data-i18n="d.balconies">Balconies (2×)</div></div>
             <div class="detail-item"><div class="detail-val" data-i18n="d.entrance">Entrance D</div><div class="detail-label">Astrid Garden</div></div>
+        </div>
+        <div class="equip-section">
+            <div class="equip-section-label" data-i18n="equip.label">Included Equipment</div>
+            <div class="equip-grid">
+                <div class="equip-item">
+                    <div class="equip-item-brand">Samsung</div>
+                    <div class="equip-item-name" data-i18n="eq.fridge">American fridge with ice maker</div>
+                </div>
+                <div class="equip-item">
+                    <div class="equip-item-brand">AEG</div>
+                    <div class="equip-item-name" data-i18n="eq.steam">Steam oven</div>
+                </div>
+                <div class="equip-item">
+                    <div class="equip-item-brand">AEG</div>
+                    <div class="equip-item-name" data-i18n="eq.micro">Microwave oven</div>
+                </div>
+                <div class="equip-item">
+                    <div class="equip-item-brand">&nbsp;</div>
+                    <div class="equip-item-name" data-i18n="eq.coffee">Coffee machine</div>
+                </div>
+                <div class="equip-item">
+                    <div class="equip-item-brand">&nbsp;</div>
+                    <div class="equip-item-name" data-i18n="eq.wash">Washer-dryer</div>
+                </div>
+                <div class="equip-item">
+                    <div class="equip-item-brand">LG 55″</div>
+                    <div class="equip-item-name" data-i18n="eq.tv">Smart TV + Soundbar</div>
+                </div>
+                <div class="equip-item">
+                    <div class="equip-item-brand">Pro-Ject</div>
+                    <div class="equip-item-name" data-i18n="eq.vinyl">Turntable</div>
+                </div>
+                <div class="equip-item">
+                    <div class="equip-item-brand">MATE</div>
+                    <div class="equip-item-name" data-i18n="eq.bike">Design e-bike</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -652,6 +729,10 @@
                 "f3.title": "Take Home a Memory", "f3.desc": "Purchase a piece as a souvenir. We arrange international shipping",
                 "details.label": "Specifications", "details.title": "Apartment in <em>Astrid Garden</em>",
                 "d.layout": "Layout + storage", "d.area": "Floor area", "d.balconies": "Balconies (2×)", "d.entrance": "Entrance D",
+                "equip.label": "Included Equipment",
+                "eq.fridge": "American fridge with ice maker", "eq.steam": "Steam oven", "eq.micro": "Microwave oven",
+                "eq.coffee": "Coffee machine", "eq.wash": "Washer-dryer", "eq.tv": "Smart TV + Soundbar",
+                "eq.vinyl": "Turntable", "eq.bike": "Design e-bike",
                 "gallery.label": "Photo Gallery", "gallery.title": "Explore the <em>Apartment</em>",
                 "map.title": "Strategic <em>Location</em>", "map.desc": "Perfect balance between cultural life and accessibility. International schools nearby. Rich art scene and riverside promenades.",
                 "contact.label": "Information & Booking", "contact.title": "Contact <em>Us</em>",
@@ -669,6 +750,10 @@
                 "f3.title": "Nehmen Sie eine Erinnerung mit", "f3.desc": "Kaufen Sie ein Stück als Souvenir. Wir arrangieren den internationalen Versand",
                 "details.label": "Spezifikationen", "details.title": "Wohnung im <em>Astrid Garden</em>",
                 "d.layout": "Grundriss + Abstellraum", "d.area": "Wohnfläche", "d.balconies": "Balkone (2×)", "d.entrance": "Eingang D",
+                "equip.label": "Ausstattung",
+                "eq.fridge": "Amerikanischer Kühlschrank mit Eiswürfelbereiter", "eq.steam": "Dampfgarer", "eq.micro": "Mikrowelle",
+                "eq.coffee": "Kaffeemaschine", "eq.wash": "Waschtrockner", "eq.tv": "Smart TV + Soundbar",
+                "eq.vinyl": "Plattenspieler", "eq.bike": "Design-E-Bike",
                 "gallery.label": "Fotogalerie", "gallery.title": "Entdecken Sie die <em>Wohnung</em>",
                 "map.title": "Strategische <em>Lage</em>", "map.desc": "Perfekte Balance zwischen Kulturleben und Erreichbarkeit. Internationale Schulen in der Nähe. Reiche Kunstszene und Uferpromenaden.",
                 "contact.label": "Information & Buchung", "contact.title": "Kontaktieren Sie <em>uns</em>",
@@ -686,6 +771,10 @@
                 "f3.title": "Odvezte si vzpomínku", "f3.desc": "Zakupte si dílo jako suvenýr. Zajistíme mezinárodní dopravu",
                 "details.label": "Specifikace", "details.title": "Apartmán v <em>Astrid Garden</em>",
                 "d.layout": "Dispozice + sklep", "d.area": "Podlahová plocha", "d.balconies": "Balkony (2×)", "d.entrance": "Vchod D",
+                "equip.label": "Vybavení apartmánu",
+                "eq.fridge": "Americká lednice s výrobníkem ledu", "eq.steam": "Parní trouba", "eq.micro": "Mikrovlnná trouba",
+                "eq.coffee": "Kávovar", "eq.wash": "Pračka se sušičkou", "eq.tv": "Chytrá televize + Soundbar",
+                "eq.vinyl": "Gramofon", "eq.bike": "Designové elektrokolo",
                 "gallery.label": "Fotogalerie", "gallery.title": "Prohlédněte si <em>apartmán</em>",
                 "map.title": "Strategická <em>poloha</em>", "map.desc": "Dokonalá rovnováha mezi kulturním životem a dostupností. Mezinárodní školy v okolí. Bohatá umělecká scéna a promenády u řeky.",
                 "contact.label": "Informace a rezervace", "contact.title": "Kontaktujte <em>nás</em>",
