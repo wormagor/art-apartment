@@ -1133,6 +1133,24 @@
                     const scored = els.map(e => ({ e, s: score(e.tags.name) })).filter(x => x.s > 0).sort((a,b) => b.s - a.s);
                     const best = scored[0]?.e || null;
                     const tags = best ? best.tags : {};
+                    // If OSM proximity search has no useful info, try Nominatim name search
+                    const hasUseful = tags.opening_hours || tags.phone || tags['contact:phone'] || tags.website || tags['contact:website'] || tags['addr:street'];
+                    if (!hasUseful) {
+                        try {
+                            const nmResp = await fetch('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: poiName + ' Praha', format: 'json', limit: 5, extratags: '1', addressdetails: '1' }));
+                            const nmData = await nmResp.json();
+                            for (const r of nmData) {
+                                const rn = (r.display_name || '').toLowerCase();
+                                const firstWord = poiName.toLowerCase().split(' ')[0];
+                                if (rn.includes(firstWord) && r.extratags) {
+                                    Object.assign(tags, r.extratags);
+                                    if (r.address?.road && !tags['addr:street']) tags['addr:street'] = r.address.road;
+                                    if (r.address?.house_number && !tags['addr:housenumber']) tags['addr:housenumber'] = r.address.house_number;
+                                    break;
+                                }
+                            }
+                        } catch(e) {}
+                    }
                     // Photo — try sources in priority order
                     const phEl = document.getElementById(pid + '-ph');
                     if (phEl) {
@@ -1180,7 +1198,7 @@
                         if (tags['addr:street']) lines.push('📍 ' + tags['addr:street'] + (tags['addr:housenumber'] ? ' ' + tags['addr:housenumber'] : ''));
                         if (tags.outdoor_seating === 'yes') lines.push('🌿 Outdoor seating');
                         if (tags.wheelchair === 'yes') lines.push('♿ Wheelchair accessible');
-                        infoEl.innerHTML = lines.length ? lines.join('<br>') : '<span style="color:#aaa">No info in OpenStreetMap</span>';
+                        infoEl.innerHTML = lines.length ? lines.join('<br>') : '<span style="color:#aaa">Podrobnosti na <a href="' + mapyCzUrl + '" target="_blank" style="color:#cc0000">Mapy.cz ↗</a></span>';
                     }
                 } catch(e) {
                     const infoEl = document.getElementById(pid + '-info');
